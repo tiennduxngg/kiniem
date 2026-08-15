@@ -1,5 +1,5 @@
 /* =========================================
-   LẤY ELEMENT
+   ELEMENTS
 ========================================= */
 
 const volumeScreen =
@@ -21,69 +21,79 @@ const musicDisc =
     document.getElementById("musicDisc");
 
 
-/* =========================================
-   TRẠNG THÁI
-========================================= */
-
 let currentBox = null;
 
 
 /* =========================================
-   MỞ WEBSITE
-   TURN UP YOUR VOLUME → FOUR BOX
+   OKAY
+   TRANG 1 → TRANG 2
 ========================================= */
 
-okayBtn.addEventListener("click", async () => {
+okayBtn.addEventListener(
+    "click",
+    async () => {
 
-    /*
-     * iPhone/Safari thường chặn autoplay.
-     * Vì người dùng vừa bấm OKAY nên đây là
-     * thời điểm thích hợp để phát nhạc.
-     */
+        /*
+         * Phát nhạc sau thao tác
+         * của người dùng.
+         */
 
-    try {
+        try {
 
-        await music.play();
+            await music.play();
 
-        musicDisc.classList.add("playing");
+            musicDisc.classList.add(
+                "playing"
+            );
 
-        musicButton.innerHTML = "❚❚";
+            musicButton.innerHTML =
+                "❚❚";
 
-    } catch (error) {
+        } catch (error) {
 
-        console.log(
-            "Trình duyệt không cho phát nhạc:",
-            error
+            console.log(
+                "Không thể tự phát nhạc:",
+                error
+            );
+
+        }
+
+
+        /*
+         * Trang volume trượt sang trái
+         */
+
+        volumeScreen.classList.add(
+            "next"
         );
 
+
+        /*
+         * Trang Four Box trượt vào
+         */
+
+        mainPage.classList.add(
+            "show"
+        );
+
+
+        /*
+         * Sau khi chuyển trang
+         */
+
+        setTimeout(() => {
+
+            document.body.style.overflow =
+                "";
+
+        }, 700);
+
     }
-
-
-    /*
-     * Ẩn màn hình volume
-     */
-
-    volumeScreen.classList.add("hide");
-
-
-    /*
-     * Hiện màn hình FOUR BOX
-     */
-
-    setTimeout(() => {
-
-        volumeScreen.style.display =
-            "none";
-
-        mainPage.classList.add("show");
-
-    }, 650);
-
-});
+);
 
 
 /* =========================================
-   MỞ BOX
+   MỞ MỘT HỘP
 ========================================= */
 
 function openBox(number) {
@@ -92,27 +102,31 @@ function openBox(number) {
 
 
     /*
-     * Ẩn màn FOUR BOX
+     * Ẩn trang Four Box
      */
 
-    mainPage.classList.remove("show");
+    mainPage.classList.remove(
+        "show"
+    );
 
 
     /*
-     * Đóng tất cả trang quà trước
+     * Đóng các trang quà khác
      */
 
     document
         .querySelectorAll(".gift-page")
         .forEach(page => {
 
-            page.classList.remove("show");
+            page.classList.remove(
+                "show"
+            );
 
         });
 
 
     /*
-     * Mở đúng trang
+     * Tìm trang tương ứng
      */
 
     const selectedPage =
@@ -121,26 +135,33 @@ function openBox(number) {
         );
 
 
-    if (!selectedPage) return;
-
-
-    selectedPage.classList.add("show");
+    if (!selectedPage) {
+        return;
+    }
 
 
     /*
-     * Đưa trang về đầu
+     * Hiện trang
+     */
+
+    selectedPage.classList.add(
+        "show"
+    );
+
+
+    /*
+     * Cuộn lên đầu
      */
 
     selectedPage.scrollTop = 0;
 
 
     /*
-     * Ngăn body scroll
+     * Không scroll nền
      */
 
     document.body.style.overflow =
         "hidden";
-
 }
 
 
@@ -151,23 +172,27 @@ function openBox(number) {
 function goBack() {
 
     /*
-     * Đóng tất cả trang quà
+     * Đóng trang quà
      */
 
     document
         .querySelectorAll(".gift-page")
         .forEach(page => {
 
-            page.classList.remove("show");
+            page.classList.remove(
+                "show"
+            );
 
         });
 
 
     /*
-     * Hiện lại FOUR BOX
+     * Hiện lại Four Box
      */
 
-    mainPage.classList.add("show");
+    mainPage.classList.add(
+        "show"
+    );
 
 
     /*
@@ -179,12 +204,11 @@ function goBack() {
 
 
     currentBox = null;
-
 }
 
 
 /* =========================================
-   NÚT MUSIC
+   MUSIC BUTTON
 ========================================= */
 
 musicButton.addEventListener(
@@ -231,7 +255,7 @@ musicButton.addEventListener(
 
 
 /* =========================================
-   KHI NHẠC HẾT
+   MUSIC PAUSE
 ========================================= */
 
 music.addEventListener(
@@ -250,7 +274,7 @@ music.addEventListener(
 
 
 /* =========================================
-   ESC → BACK
+   ESC = BACK
 ========================================= */
 
 document.addEventListener(
@@ -268,23 +292,3 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================
-   NGĂN CLICK BUTTON LÀM RELOAD FORM
-========================================= */
-
-document
-    .querySelectorAll("button")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-            }
-        );
-
-    });
