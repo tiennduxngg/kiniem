@@ -1,261 +1,344 @@
-/* ==================================================
+/* =====================================================
    ELEMENTS
-================================================== */
+===================================================== */
 
 const intro = document.getElementById("intro");
+
 const home = document.getElementById("home");
-const okayBtn = document.getElementById("okayBtn");
 
-const pages = document.querySelectorAll(".content-page");
+const okayBtn =
+    document.getElementById("okayBtn");
 
-const audio = document.getElementById("audio");
-const playBtn = document.getElementById("playBtn");
-const disc = document.getElementById("disc");
+const giftBoxes =
+    document.querySelectorAll(".gift-box");
+
+const pages =
+    document.querySelectorAll(".page");
+
+const backButtons =
+    document.querySelectorAll("[data-back]");
 
 
-/* ==================================================
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const audio =
+    document.getElementById("audio");
+
+const playBtn =
+    document.getElementById("playBtn");
+
+const vinyl =
+    document.getElementById("vinyl");
+
+const progress =
+    document.getElementById("progress");
+
+const currentTime =
+    document.getElementById("currentTime");
+
+const duration =
+    document.getElementById("duration");
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTime(seconds) {
+
+    if (!Number.isFinite(seconds)) {
+        return "0:00";
+    }
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const secondsLeft =
+        Math.floor(seconds % 60)
+            .toString()
+            .padStart(2, "0");
+
+    return (
+        minutes +
+        ":" +
+        secondsLeft
+    );
+}
+
+
+/* =====================================================
    OKAY
-================================================== */
+===================================================== */
 
-okayBtn.addEventListener("click", function () {
+okayBtn.addEventListener(
+    "click",
+    function () {
 
-    intro.classList.add("hide");
+        intro.classList.add("hide");
 
-    setTimeout(function () {
-
-        intro.style.display = "none";
-
-        home.classList.add("show");
-
-    }, 500);
-
-});
-
-
-/* ==================================================
-   OPEN PAGE
-================================================== */
-
-function openPage(pageId) {
-
-    /*
-       Đóng tất cả page trước
-    */
-
-    pages.forEach(function (page) {
-
-        page.classList.remove("active");
-
-    });
-
-
-    /*
-       Ẩn HOME
-    */
-
-    home.classList.remove("show");
-
-
-    /*
-       Mở page được chọn
-    */
-
-    const page =
-        document.getElementById(pageId);
-
-    if (!page) return;
-
-    page.classList.add("active");
-
-    page.scrollTop = 0;
-}
-
-
-/* ==================================================
-   HOME
-================================================== */
-
-function goHome() {
-
-    /*
-       Dừng nhạc
-    */
-
-    if (audio) {
-
-        audio.pause();
-
-        audio.currentTime = 0;
+        home.style.display = "block";
 
     }
+);
 
 
-    /*
-       Reset nút
-    */
+/* =====================================================
+   OPEN BOX
+===================================================== */
 
-    if (playBtn) {
+giftBoxes.forEach(
+    function (box) {
 
-        playBtn.innerHTML = "▶";
+        box.addEventListener(
+            "click",
+            function () {
 
-        playBtn.classList.remove("playing");
+                const pageId =
+                    box.dataset.page;
+
+                pages.forEach(
+                    function (page) {
+
+                        page.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                const page =
+                    document.getElementById(
+                        pageId
+                    );
+
+
+                if (page) {
+
+                    page.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
 
     }
+);
 
 
-    /*
-       Reset đĩa
-    */
+/* =====================================================
+   BACK
+===================================================== */
 
-    if (disc) {
+backButtons.forEach(
+    function (button) {
 
-        disc.classList.remove("playing");
+        button.addEventListener(
+            "click",
+            function () {
+
+                pages.forEach(
+                    function (page) {
+
+                        page.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* dừng nhạc */
+
+                if (
+                    audio &&
+                    !audio.paused
+                ) {
+
+                    audio.pause();
+
+                    playBtn.textContent =
+                        "▶";
+
+                    vinyl.classList.remove(
+                        "playing"
+                    );
+
+                }
+
+
+                home.style.display =
+                    "block";
+
+            }
+        );
 
     }
+);
 
 
-    /*
-       Đóng page
-    */
+/* =====================================================
+   MUSIC - LOAD
+===================================================== */
 
-    pages.forEach(function (page) {
+audio.addEventListener(
+    "loadedmetadata",
+    function () {
 
-        page.classList.remove("active");
+        duration.textContent =
+            formatTime(
+                audio.duration
+            );
 
-    });
-
-
-    /*
-       Mở HOME
-    */
-
-    home.classList.add("show");
-
-}
+    }
+);
 
 
-/* ==================================================
-   MUSIC PLAY / PAUSE
-================================================== */
+/* =====================================================
+   PLAY / PAUSE
+===================================================== */
 
 playBtn.addEventListener(
     "click",
     async function () {
 
-        /*
-           Nếu đang pause
-        */
+        try {
 
-        if (audio.paused) {
+            if (audio.paused) {
 
-            try {
+
+                /*
+                   Nếu muốn bài hát bắt đầu
+                   từ giây 41 thì bỏ // ở dòng dưới:
+
+                   audio.currentTime = 41;
+                */
+
+                audio.currentTime = 41;
+
 
                 await audio.play();
 
-            } catch (error) {
 
-                console.error(error);
+                playBtn.textContent =
+                    "Ⅱ";
 
-                alert(
-                    "Không phát được MP3!\n\n" +
-                    "Hãy kiểm tra file:\n" +
-                    "music/song.mp3"
+
+                vinyl.classList.add(
+                    "playing"
+                );
+
+
+            } else {
+
+
+                audio.pause();
+
+
+                playBtn.textContent =
+                    "▶";
+
+
+                vinyl.classList.remove(
+                    "playing"
                 );
 
             }
 
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Không phát được music.mp3. " +
+                "Kiểm tra file music.mp3 đã " +
+                "được upload đúng thư mục chưa."
+            );
+
         }
 
-        /*
-           Nếu đang phát
-        */
+    }
+);
 
-        else {
 
-            audio.pause();
+/* =====================================================
+   UPDATE TIME
+===================================================== */
 
+audio.addEventListener(
+    "timeupdate",
+    function () {
+
+        if (!audio.duration) {
+            return;
         }
 
+
+        const percent =
+            (
+                audio.currentTime /
+                audio.duration
+            ) * 100;
+
+
+        progress.value =
+            percent;
+
+
+        currentTime.textContent =
+            formatTime(
+                audio.currentTime
+            );
+
     }
 );
 
 
-/* ==================================================
-   AUDIO PLAY
-================================================== */
+/* =====================================================
+   SEEK
+===================================================== */
 
-audio.addEventListener(
-    "play",
+progress.addEventListener(
+    "input",
     function () {
 
-        playBtn.innerHTML = "❚❚";
-
-        playBtn.classList.add("playing");
-
-        disc.classList.add("playing");
-
-    }
-);
+        if (!audio.duration) {
+            return;
+        }
 
 
-/* ==================================================
-   AUDIO PAUSE
-================================================== */
-
-audio.addEventListener(
-    "pause",
-    function () {
-
-        playBtn.innerHTML = "▶";
-
-        playBtn.classList.remove("playing");
-
-        disc.classList.remove("playing");
+        audio.currentTime =
+            (
+                progress.value / 100
+            ) * audio.duration;
 
     }
 );
 
 
-/* ==================================================
-   AUDIO END
-================================================== */
+/* =====================================================
+   END
+===================================================== */
 
 audio.addEventListener(
     "ended",
     function () {
 
-        playBtn.innerHTML = "▶";
+        playBtn.textContent =
+            "▶";
 
-        playBtn.classList.remove("playing");
+        vinyl.classList.remove(
+            "playing"
+        );
 
-        disc.classList.remove("playing");
+        progress.value = 0;
 
-    }
-);
-
-
-/* ==================================================
-   ESC = BACK
-================================================== */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            const opened =
-                document.querySelector(
-                    ".content-page.active"
-                );
-
-            if (opened) {
-
-                goHome();
-
-            }
-
-        }
+        currentTime.textContent =
+            "0:00";
 
     }
 );
