@@ -922,14 +922,90 @@ img {
 
     text-align: right;
 }
+/* =========================================================
+   BOX 4 - CENTER
+========================================================= */
 
+.simple-page {
+    width: min(650px, 100%);
+    min-height: 100dvh;
+    margin: 0 auto;
+
+    padding:
+        120px 20px 70px;
+
+    text-align: center;
+}
+
+.big-image {
+    display: block;
+
+    width: 150px;
+    max-width: 45vw;
+    height: auto;
+
+    margin: 0 auto 25px;
+
+    object-fit: contain;
+}
+
+.simple-page h2 {
+    margin: 0 0 25px;
+
+    color: #d36383;
+
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-style: italic;
+
+    line-height: 1.2;
+}
+
+.simple-page .letter-box {
+    width: 100%;
+    max-width: 600px;
+
+    margin:
+        0 auto 60px;
+
+    text-align: left;
+}
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
+/* BOX 4 MOBILE */
 
+.simple-page {
+    width: 100%;
+    padding:
+        110px 18px 60px;
+
+    text-align: center;
+}
+
+.big-image {
+    width: 130px;
+    max-width: 40vw;
+
+    margin:
+        0 auto 20px;
+}
+
+.simple-page h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.simple-page .letter-box {
+    width: 100%;
+    margin:
+        0 auto 50px;
+
+    padding: 25px 22px;
+}
     /* INTRO */
 
     .intro-box {
