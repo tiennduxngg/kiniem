@@ -1001,3 +1001,442 @@ button {
         font-size: 11.5px;
     }
 }
+/* ==================================================
+   BOX 1 - FLOWER
+================================================== */
+
+.flower-page {
+    background:
+        linear-gradient(
+            rgba(255,255,255,.35),
+            rgba(255,255,255,.35)
+        ),
+        #f5f2eb;
+
+    overflow-y: auto;
+}
+
+
+/* Nút GO BACK */
+
+.flower-page .back {
+    top: 30px;
+    left: 30px;
+
+    width: 195px;
+    height: 62px;
+
+    background: #fffaf8;
+
+    border: 3px solid #e49ab0;
+
+    color: #c96684;
+
+    font-size: 18px;
+
+    border-radius: 50px;
+
+    z-index: 100;
+}
+
+
+/* Toàn bộ khu vực */
+
+.flower-scene {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 760px;
+
+    min-height: 100dvh;
+
+    margin: auto;
+
+    padding-top: 180px;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   PHONG THƯ HỒNG
+================================================== */
+
+.pink-envelope {
+
+    position: absolute;
+
+    top: 255px;
+
+    right: 20px;
+
+    width: 62%;
+
+    height: 380px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #df7898,
+            #d65d82
+        );
+
+    border-radius: 8px;
+
+    transform: rotate(5deg);
+
+    box-shadow:
+        0 15px 25px
+        rgba(130,70,85,.15);
+
+    z-index: 1;
+}
+
+
+/* nắp thư */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 190px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e989a5,
+            #d95d83
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+}
+
+
+/* ==================================================
+   HOA LỚN
+================================================== */
+
+.flower-deco {
+
+    position: absolute;
+
+    top: 150px;
+
+    left: 45px;
+
+    width: 270px;
+
+    max-width: 43vw;
+
+    z-index: 5;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 10px 12px
+            rgba(100,50,70,.15)
+        );
+}
+
+
+/* ==================================================
+   TỜ NOTE
+================================================== */
+
+.flower-note {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 78%;
+
+    max-width: 620px;
+
+    min-height: 540px;
+
+    margin:
+        180px auto 80px;
+
+    padding:
+        70px 45px 60px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #fffdf4 0,
+            #fffdf4 38px,
+            #eee8da 39px,
+            #fffdf4 40px
+        );
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 30px
+        rgba(70,50,55,.15);
+
+    transform: rotate(-2deg);
+
+    text-align: center;
+}
+
+
+/* tiêu đề */
+
+.flower-note h1 {
+
+    color: #d56585;
+
+    font-family: Georgia, serif;
+
+    font-size:
+        clamp(38px, 7vw, 58px);
+
+    font-style: italic;
+
+    line-height: 1.1;
+
+    margin-bottom: 45px;
+}
+
+
+/* nội dung */
+
+.flower-note p {
+
+    max-width: 500px;
+
+    margin: auto;
+
+    color: #4c4749;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size:
+        clamp(17px, 3vw, 23px);
+
+    line-height: 2;
+
+}
+
+
+/* trái tim */
+
+.note-heart {
+
+    position: absolute;
+
+    color: #df8ca5;
+
+    font-size: 48px;
+
+    opacity: .7;
+}
+
+.note-heart.left {
+
+    left: 35px;
+
+    bottom: 130px;
+}
+
+.note-heart.right {
+
+    right: 40px;
+
+    bottom: 130px;
+}
+
+
+/* chữ ký */
+
+.note-sign {
+
+    position: absolute;
+
+    right: 55px;
+
+    bottom: 55px;
+
+    color: #d56585;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    font-style: italic;
+}
+
+
+/* ==================================================
+   HOA STICKER
+================================================== */
+
+.flower-sticker {
+
+    position: absolute;
+
+    left: 30px;
+
+    bottom: 70px;
+
+    width: 240px;
+
+    max-width: 35vw;
+
+    z-index: 20;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 8px 12px
+            rgba(70,40,50,.15)
+        );
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .flower-scene {
+
+        padding-top: 145px;
+
+        min-height: 1000px;
+    }
+
+    .flower-page .back {
+
+        top: 30px;
+
+        left: 30px;
+
+        width: 195px;
+
+        height: 62px;
+    }
+
+
+    .flower-deco {
+
+        top: 145px;
+
+        left: 25px;
+
+        width: 220px;
+
+        max-width: none;
+    }
+
+
+    .pink-envelope {
+
+        top: 280px;
+
+        right: -20px;
+
+        width: 68%;
+
+        height: 320px;
+    }
+
+
+    .envelope-flap {
+
+        height: 160px;
+    }
+
+
+    .flower-note {
+
+        width: 78%;
+
+        min-height: 500px;
+
+        margin-top: 210px;
+
+        padding:
+            65px 25px 55px;
+    }
+
+
+    .flower-note h1 {
+
+        font-size: 39px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .flower-note p {
+
+        font-size: 16px;
+
+        line-height: 1.9;
+    }
+
+
+    .note-heart {
+
+        font-size: 38px;
+    }
+
+
+    .note-heart.left {
+
+        left: 25px;
+
+        bottom: 100px;
+    }
+
+
+    .note-heart.right {
+
+        right: 25px;
+
+        bottom: 100px;
+    }
+
+
+    .note-sign {
+
+        right: 30px;
+
+        bottom: 40px;
+
+        font-size: 25px;
+    }
+
+
+    .flower-sticker {
+
+        left: 15px;
+
+        bottom: 35px;
+
+        width: 180px;
+
+        max-width: none;
+    }
+}
