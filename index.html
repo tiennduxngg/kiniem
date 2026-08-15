@@ -2,10 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Four Box 4U ♡</title>
 
@@ -14,67 +11,62 @@
 
 <body>
 
-<!-- =====================================================
-     MÀN HÌNH MỞ ĐẦU
-===================================================== -->
+<!-- ==================================================
+     INTRO
+================================================== -->
 
-<section id="volumeScreen" class="page volume-screen">
+<section id="intro" class="screen intro-screen">
 
-    <div class="volume-paper">
+    <div class="intro-box">
 
-        <div class="volume-content">
+        <h1>
+            🔊 Turn up<br>
+            your volume
+        </h1>
 
-            <h1>
-                🔊 Turn up<br>
-                your volume
-            </h1>
+        <p>
+            Please turn on your volume for the<br>
+            best experience!
+        </p>
 
-            <p>
-                Please turn on your volume for the<br>
-                best experience!
-            </p>
-
-            <button id="okayBtn" class="okay-btn">
-                OKAY
-            </button>
-
-        </div>
+        <button id="okayBtn">
+            OKAY
+        </button>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     TRANG FOUR BOX
-===================================================== -->
+<!-- ==================================================
+     MAIN FOUR BOX
+================================================== -->
 
-<section id="mainPage" class="page main-page">
+<section id="home" class="screen home-screen">
 
-    <div class="main-content">
+    <div class="home-container">
 
-        <header class="header">
+        <div class="home-title">
 
             <h1>
                 Four Box 4U
             </h1>
 
             <p>
-                A small gift is waiting for you.
+                A little gift for you ♡
             </p>
 
-        </header>
+        </div>
 
 
-        <!-- 4 BOX -->
+        <div class="boxes">
 
-        <div class="box-grid">
 
             <!-- BOX 1 -->
 
             <button
-                class="gift-card"
-                onclick="openBox(1)"
+                class="box"
+                onclick="openPage('box1')"
             >
 
                 <img
@@ -85,26 +77,26 @@
             </button>
 
 
-            <!-- BOX 2 -->
+            <!-- BOX 2 - LITTLE -->
 
             <button
-                class="gift-card"
-                onclick="openBox(2)"
+                class="box"
+                onclick="openPage('littlePage')"
             >
 
                 <img
                     src="images/envelopes.png"
-                    alt="Letters"
+                    alt="Little"
                 >
 
             </button>
 
 
-            <!-- BOX 3 -->
+            <!-- BOX 3 - MUSIC -->
 
             <button
-                class="gift-card"
-                onclick="openBox(3)"
+                class="box"
+                onclick="openPage('musicPage')"
             >
 
                 <img
@@ -118,8 +110,8 @@
             <!-- BOX 4 -->
 
             <button
-                class="gift-card"
-                onclick="openBox(4)"
+                class="box"
+                onclick="openPage('box4')"
             >
 
                 <img
@@ -129,6 +121,7 @@
 
             </button>
 
+
         </div>
 
     </div>
@@ -136,28 +129,25 @@
 </section>
 
 
-<!-- =====================================================
+<!-- ==================================================
      BOX 1
-===================================================== -->
+================================================== -->
 
-<section
-    id="boxPage1"
-    class="gift-page simple-gift"
->
+<section id="box1" class="content-page">
 
     <button
-        class="back-btn"
-        onclick="goBack()"
+        class="back"
+        onclick="goHome()"
     >
-        ← Back
+        ← GO BACK
     </button>
 
 
-    <div class="simple-content">
+    <div class="simple-page">
 
         <img
+            class="big-image"
             src="images/flower.png"
-            class="simple-image"
             alt="Flower"
         >
 
@@ -165,14 +155,14 @@
             A little flower for you ♡
         </h2>
 
-        <div class="heart">
+        <div class="big-heart">
             ♡
         </div>
 
         <p>
-            Tặng bạn một bó hoa nhỏ,
-            vì bạn xứng đáng với những
-            điều dịu dàng nhất.
+            Tặng bạn một chút dịu dàng,
+            một chút yêu thương và một
+            bó hoa nhỏ dành riêng cho bạn.
         </p>
 
     </div>
@@ -180,73 +170,204 @@
 </section>
 
 
-<!-- =====================================================
-     BOX 2
-===================================================== -->
+<!-- ==================================================
+     BOX 2 - LITTLE
+================================================== -->
 
-<section
-    id="boxPage2"
-    class="gift-page simple-gift"
->
+<section id="littlePage" class="content-page little-page">
 
     <button
-        class="back-btn"
-        onclick="goBack()"
+        class="back"
+        onclick="goHome()"
     >
-        ← Back
+        ← GO BACK
     </button>
 
 
-    <div class="simple-content">
+    <div class="little-container">
 
-        <img
-            src="images/envelopes.png"
-            class="simple-image"
-            alt="Letters"
-        >
 
-        <h2>
-            Little letters ♡
-        </h2>
+        <!-- LITTLE 01 -->
 
-        <div class="heart">
-            ♡
+        <article class="little-card card-white">
+
+            <div class="little-photo">
+
+                <img
+                    src="images/little1.jpg"
+                    alt="Little 1"
+                >
+
+            </div>
+
+            <div class="little-text">
+
+                <small>
+                    LITTLE NOTE 01
+                </small>
+
+                <h3>
+                    Một điều nhỏ dành cho bạn ♡
+                </h3>
+
+                <p>
+                    Có những điều rất bình thường,
+                    nhưng khi ở bên đúng người,
+                    chúng lại trở thành những
+                    kỷ niệm thật đẹp.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- LITTLE 02 -->
+
+        <article class="little-card card-pink-dots">
+
+            <div class="little-photo rotate-left">
+
+                <img
+                    src="images/little2.jpg"
+                    alt="Little 2"
+                >
+
+            </div>
+
+            <div class="little-text">
+
+                <small>
+                    LITTLE NOTE 02
+                </small>
+
+                <h3>
+                    Những ngày ở bên nhau
+                </h3>
+
+                <p>
+                    Mình thích những khoảnh khắc
+                    chẳng cần điều gì đặc biệt,
+                    chỉ cần có bạn ở đó là đủ.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- LITTLE 03 -->
+
+        <article class="little-card card-pink-lines">
+
+            <span class="paper-tab"></span>
+
+            <div class="little-photo rotate-right">
+
+                <img
+                    src="images/little3.jpg"
+                    alt="Little 3"
+                >
+
+            </div>
+
+            <div class="little-text">
+
+                <small>
+                    LITTLE NOTE 03
+                </small>
+
+                <h3>
+                    Cảm ơn vì đã xuất hiện
+                </h3>
+
+                <p>
+                    Cảm ơn vì đã bước vào cuộc sống
+                    của mình và làm cho những ngày
+                    bình thường trở nên đáng nhớ hơn.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- LITTLE 04 -->
+
+        <article class="little-card card-white">
+
+            <div class="little-photo rotate-left">
+
+                <img
+                    src="images/little4.jpg"
+                    alt="Little 4"
+                >
+
+            </div>
+
+            <div class="little-text">
+
+                <small>
+                    LITTLE NOTE 04
+                </small>
+
+                <h3>
+                    Một lời nhắn cuối ♡
+                </h3>
+
+                <p>
+                    Mong rằng sau này chúng mình
+                    vẫn sẽ có thật nhiều câu chuyện,
+                    thật nhiều kỷ niệm và thật nhiều
+                    Little Notes dành cho nhau.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <div class="little-end">
+
+            <h2>
+                That's all ♡
+            </h2>
+
+            <p>
+                Một vài điều nhỏ bé,
+                nhưng đều là những điều
+                mình muốn dành cho bạn.
+            </p>
+
         </div>
 
-        <p>
-            Có vài điều mình muốn gửi
-            đến bạn qua những lá thư nhỏ này.
-        </p>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- ==================================================
      BOX 3 - MUSIC
-===================================================== -->
+================================================== -->
 
-<section
-    id="boxPage3"
-    class="gift-page music-page"
->
+<section id="musicPage" class="content-page music-page">
 
     <button
-        class="back-btn"
-        onclick="goBack()"
+        class="back"
+        onclick="goHome()"
     >
-        ← Back
+        ← GO BACK
     </button>
 
 
-    <div class="music-inner">
+    <div class="music-container">
 
-        <div class="music-image-box">
+        <div class="music-cover">
 
             <img
                 src="images/music-cover.jpg"
-                alt="Music"
+                alt="Music cover"
             >
 
         </div>
@@ -260,24 +381,24 @@
             ♡
         </div>
 
-        <p class="music-description">
+        <p>
             Một bài hát nhỏ dành riêng cho bạn.
         </p>
 
 
         <!-- MP3 PLAYER -->
 
-        <div class="mp3-player">
+        <div class="player">
 
             <div
-                id="musicDisc"
-                class="mp3-disc"
+                id="disc"
+                class="disc"
             >
                 ♪
             </div>
 
 
-            <div class="mp3-info">
+            <div class="song-info">
 
                 <strong>
                     A Little Song
@@ -291,8 +412,8 @@
 
 
             <button
-                id="musicButton"
-                class="mp3-button"
+                id="playBtn"
+                class="play-btn"
                 type="button"
             >
                 ▶
@@ -301,8 +422,8 @@
         </div>
 
 
-        <p class="music-note">
-            Nhấn nút ▶ để bắt đầu phát nhạc ♡
+        <p class="player-note">
+            Nhấn ▶ để bắt đầu phát nhạc
         </p>
 
     </div>
@@ -310,40 +431,33 @@
 </section>
 
 
-<!-- =====================================================
+<!-- ==================================================
      BOX 4
-===================================================== -->
+================================================== -->
 
-<section
-    id="boxPage4"
-    class="gift-page simple-gift"
->
+<section id="box4" class="content-page">
 
     <button
-        class="back-btn"
-        onclick="goBack()"
+        class="back"
+        onclick="goHome()"
     >
-        ← Back
+        ← GO BACK
     </button>
 
 
-    <div class="simple-content">
+    <div class="simple-page">
 
         <img
+            class="big-image"
             src="images/envelope.png"
-            class="simple-image"
-            alt="Envelope"
+            alt="Letter"
         >
 
         <h2>
-            A letter for you
+            A letter for you ♡
         </h2>
 
-        <div class="heart">
-            ♡
-        </div>
-
-        <div class="letter">
+        <div class="letter-box">
 
             <p>
                 Gửi người đặc biệt của mình,
@@ -356,9 +470,9 @@
             </p>
 
             <p>
-                Mong rằng sau này chúng mình
-                vẫn sẽ có thật nhiều câu chuyện
-                để kể cho nhau nghe.
+                Hy vọng rằng chúng mình sẽ
+                luôn có thật nhiều điều để
+                cùng nhau nhớ về.
             </p>
 
             <p class="signature">
@@ -372,235 +486,15 @@
 </section>
 
 
-<!-- =====================================================
-     BOX LITTLE
-     4 TỜ THƯ / GHI CHÚ
-===================================================== -->
-
-<section
-    id="littlePage"
-    class="gift-page little-page"
->
-
-    <!-- BACK -->
-
-    <button
-        class="little-back"
-        onclick="goBack()"
-    >
-        ← GO BACK
-    </button>
-
-
-    <div class="little-container">
-
-
-        <!-- ==========================================
-             LITTLE 1
-        =========================================== -->
-
-        <article class="little-note note-one">
-
-            <div class="polaroid">
-
-                <img
-                    src="images/little1.jpg"
-                    alt="Little memory 1"
-                >
-
-            </div>
-
-
-            <div class="note-content">
-
-                <p>
-                    Đây là nơi mình muốn
-                    lưu lại một kỷ niệm nhỏ
-                    của chúng mình.
-                </p>
-
-                <p>
-                    Có thể nó chẳng phải
-                    điều gì quá lớn lao,
-                    nhưng đối với mình,
-                    nó luôn rất đặc biệt.
-                </p>
-
-                <h3>
-                    Little note 1
-                </h3>
-
-            </div>
-
-
-            <span class="note-sparkle">
-                ✦
-            </span>
-
-        </article>
-
-
-        <!-- ==========================================
-             LITTLE 2
-        =========================================== -->
-
-        <article class="little-note note-two">
-
-            <div class="polaroid rotate-left">
-
-                <img
-                    src="images/little2.jpg"
-                    alt="Little memory 2"
-                >
-
-            </div>
-
-
-            <div class="note-content">
-
-                <span class="sample-label">
-                    OUR MEMORY
-                </span>
-
-                <p>
-                    Mình thích những khoảnh
-                    khắc rất bình thường như
-                    thế này.
-                </p>
-
-                <p>
-                    Vì chính những điều nhỏ
-                    bé ấy lại khiến mình nhớ
-                    về bạn nhiều nhất.
-                </p>
-
-                <h3>
-                    Little note 2
-                </h3>
-
-            </div>
-
-        </article>
-
-
-        <!-- ==========================================
-             LITTLE 3
-        =========================================== -->
-
-        <article class="little-note note-three">
-
-            <span class="paper-tab"></span>
-
-
-            <div class="polaroid rotate-right">
-
-                <img
-                    src="images/little3.jpg"
-                    alt="Little memory 3"
-                >
-
-            </div>
-
-
-            <div class="note-content">
-
-                <p>
-                    Nếu có thể lưu giữ thời gian,
-                    mình muốn giữ lại những ngày
-                    chúng mình còn ở cạnh nhau
-                    thật lâu.
-                </p>
-
-                <p>
-                    Cảm ơn bạn vì đã biến những
-                    ngày bình thường thành những
-                    ngày đáng nhớ.
-                </p>
-
-                <h3>
-                    Little note 3
-                </h3>
-
-            </div>
-
-        </article>
-
-
-        <!-- ==========================================
-             LITTLE 4
-        =========================================== -->
-
-        <article class="little-note note-four">
-
-            <div class="polaroid rotate-left">
-
-                <img
-                    src="images/little4.jpg"
-                    alt="Little memory 4"
-                >
-
-            </div>
-
-
-            <div class="note-content">
-
-                <p>
-                    Và đây là điều cuối cùng
-                    mình muốn nói với bạn...
-                </p>
-
-                <p class="love-text">
-                    Mong rằng chúng mình sẽ
-                    còn thật nhiều Little Notes
-                    như thế này trong tương lai.
-                </p>
-
-                <h3>
-                    Little note 4 ♡
-                </h3>
-
-            </div>
-
-        </article>
-
-
-        <!-- ==========================================
-             CUỐI BOX LITTLE
-        =========================================== -->
-
-        <div class="little-ending">
-
-            <h2>
-                That's all ♡
-            </h2>
-
-            <p>
-                Một vài điều nhỏ bé,
-                nhưng đều là những điều
-                mình muốn dành cho bạn.
-            </p>
-
-            <div>
-                ♡
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     AUDIO MP3
-===================================================== -->
+<!-- ==================================================
+     MP3
+================================================== -->
 
 <audio
     id="audio"
-    src="music/song.mp3"
-    preload="auto"
-></audio>
+    preload="metadata"
+    src="music/song.mp3">
+</audio>
 
 
 <script src="script.js"></script>
