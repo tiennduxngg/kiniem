@@ -1,234 +1,290 @@
-const startBtn = document.getElementById("startBtn");
+/* =========================================
+   LẤY ELEMENT
+========================================= */
 
-const welcome = document.getElementById("welcome");
-const boxesScreen = document.getElementById("boxesScreen");
+const volumeScreen =
+    document.getElementById("volumeScreen");
 
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
+const okayBtn =
+    document.getElementById("okayBtn");
 
-const giftBoxes = document.querySelectorAll(".gift-box");
-const giftContents = document.querySelectorAll(".gift-content");
+const mainPage =
+    document.getElementById("mainPage");
 
-const progressText = document.getElementById("progressText");
+const music =
+    document.getElementById("music");
 
-const music = document.getElementById("music");
-const musicBtn = document.getElementById("musicBtn");
+const musicButton =
+    document.getElementById("musicButton");
 
-let openedBoxes = [];
+const musicDisc =
+    document.getElementById("musicDisc");
 
 
-// ==============================
-// BẮT ĐẦU
-// ==============================
+/* =========================================
+   TRẠNG THÁI
+========================================= */
 
-startBtn.addEventListener("click", () => {
+let currentBox = null;
 
-    welcome.classList.remove("active");
+
+/* =========================================
+   MỞ WEBSITE
+   TURN UP YOUR VOLUME → FOUR BOX
+========================================= */
+
+okayBtn.addEventListener("click", async () => {
+
+    /*
+     * iPhone/Safari thường chặn autoplay.
+     * Vì người dùng vừa bấm OKAY nên đây là
+     * thời điểm thích hợp để phát nhạc.
+     */
+
+    try {
+
+        await music.play();
+
+        musicDisc.classList.add("playing");
+
+        musicButton.innerHTML = "❚❚";
+
+    } catch (error) {
+
+        console.log(
+            "Trình duyệt không cho phát nhạc:",
+            error
+        );
+
+    }
+
+
+    /*
+     * Ẩn màn hình volume
+     */
+
+    volumeScreen.classList.add("hide");
+
+
+    /*
+     * Hiện màn hình FOUR BOX
+     */
 
     setTimeout(() => {
-        boxesScreen.classList.add("active");
-    }, 300);
+
+        volumeScreen.style.display =
+            "none";
+
+        mainPage.classList.add("show");
+
+    }, 650);
 
 });
 
 
-// ==============================
-// MỞ BOX
-// ==============================
+/* =========================================
+   MỞ BOX
+========================================= */
 
-giftBoxes.forEach(box => {
+function openBox(number) {
 
-    box.addEventListener("click", () => {
-
-        const number = box.dataset.box;
-
-        // Không cho mở lại animation
-        if (!openedBoxes.includes(number)) {
-
-            openedBoxes.push(number);
-
-            box.classList.add("opened");
-
-            updateProgress();
-
-        }
-
-        showContent(number);
-
-    });
-
-});
+    currentBox = number;
 
 
-// ==============================
-// HIỆN NỘI DUNG
-// ==============================
+    /*
+     * Ẩn màn FOUR BOX
+     */
 
-function showContent(number) {
+    mainPage.classList.remove("show");
 
-    giftContents.forEach(content => {
-        content.classList.remove("active");
-    });
 
-    const selected = document.getElementById(
-        `content${number}`
-    );
+    /*
+     * Đóng tất cả trang quà trước
+     */
 
-    if (selected) {
-        selected.classList.add("active");
-    }
+    document
+        .querySelectorAll(".gift-page")
+        .forEach(page => {
 
-    modal.classList.add("active");
+            page.classList.remove("show");
 
-    document.body.style.overflow = "hidden";
+        });
+
+
+    /*
+     * Mở đúng trang
+     */
+
+    const selectedPage =
+        document.getElementById(
+            "boxPage" + number
+        );
+
+
+    if (!selectedPage) return;
+
+
+    selectedPage.classList.add("show");
+
+
+    /*
+     * Đưa trang về đầu
+     */
+
+    selectedPage.scrollTop = 0;
+
+
+    /*
+     * Ngăn body scroll
+     */
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================
+   BACK
+========================================= */
+
+function goBack() {
+
+    /*
+     * Đóng tất cả trang quà
+     */
+
+    document
+        .querySelectorAll(".gift-page")
+        .forEach(page => {
+
+            page.classList.remove("show");
+
+        });
+
+
+    /*
+     * Hiện lại FOUR BOX
+     */
+
+    mainPage.classList.add("show");
+
+
+    /*
+     * Cho phép scroll
+     */
+
+    document.body.style.overflow =
+        "";
+
+
+    currentBox = null;
 
 }
 
 
-// ==============================
-// ĐÓNG POPUP
-// ==============================
+/* =========================================
+   NÚT MUSIC
+========================================= */
 
-function closePopup() {
-
-    modal.classList.remove("active");
-
-    document.body.style.overflow = "";
-
-}
-
-closeModal.addEventListener("click", closePopup);
-
-document.querySelector(".modal-bg").addEventListener(
+musicButton.addEventListener(
     "click",
-    closePopup
-);
+    async () => {
 
+        if (music.paused) {
 
-// ==============================
-// ESC
-// ==============================
+            try {
 
-document.addEventListener("keydown", e => {
+                await music.play();
 
-    if (e.key === "Escape") {
-        closePopup();
-    }
+                musicButton.innerHTML =
+                    "❚❚";
 
-});
+                musicDisc.classList.add(
+                    "playing"
+                );
 
+            } catch (error) {
 
-// ==============================
-// TIẾN ĐỘ
-// ==============================
+                console.log(
+                    "Không thể phát nhạc:",
+                    error
+                );
 
-function updateProgress() {
+            }
 
-    progressText.textContent =
-        `${openedBoxes.length} / 4 đã mở`;
+        } else {
 
-    if (openedBoxes.length === 4) {
+            music.pause();
 
-        setTimeout(() => {
+            musicButton.innerHTML =
+                "▶";
 
-            progressText.textContent =
-                "Bạn đã mở hết 4 món quà ♡";
-
-        }, 500);
-
-    }
-
-}
-
-
-// ==============================
-// MUSIC
-// ==============================
-
-musicBtn.addEventListener("click", async () => {
-
-    if (music.paused) {
-
-        try {
-
-            await music.play();
-
-            musicBtn.textContent = "❚❚";
-
-            document.querySelector(".disc")
-                .classList.add("playing");
-
-        } catch (error) {
-
-            alert(
-                "Không thể phát nhạc. Hãy kiểm tra file assets/music.mp3"
+            musicDisc.classList.remove(
+                "playing"
             );
 
         }
 
-    } else {
+    }
+);
 
-        music.pause();
 
-        musicBtn.textContent = "▶";
+/* =========================================
+   KHI NHẠC HẾT
+========================================= */
 
-        document.querySelector(".disc")
-            .classList.remove("playing");
+music.addEventListener(
+    "pause",
+    () => {
+
+        musicDisc.classList.remove(
+            "playing"
+        );
+
+        musicButton.innerHTML =
+            "▶";
 
     }
-
-});
-
-
-// ==============================
-// HIỆU ỨNG CLICK
-// ==============================
-
-document.addEventListener("click", event => {
-
-    const heart = document.createElement("span");
-
-    heart.textContent = "♡";
-
-    heart.style.position = "fixed";
-    heart.style.left = event.clientX + "px";
-    heart.style.top = event.clientY + "px";
-
-    heart.style.pointerEvents = "none";
-    heart.style.zIndex = "9999";
-
-    heart.style.fontSize = "18px";
-    heart.style.color = "#e8a7bb";
-
-    heart.style.animation =
-        "heartFloat 1s ease forwards";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 1000);
-
-});
+);
 
 
-// CSS animation tạo bằng JS
-const style = document.createElement("style");
+/* =========================================
+   ESC → BACK
+========================================= */
 
-style.innerHTML = `
-@keyframes heartFloat {
+document.addEventListener(
+    "keydown",
+    event => {
 
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(.5);
+        if (
+            event.key === "Escape" &&
+            currentBox !== null
+        ) {
+
+            goBack();
+
+        }
+
     }
+);
 
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -120px) scale(1.5);
-    }
 
-}
-`;
+/* =========================================
+   NGĂN CLICK BUTTON LÀM RELOAD FORM
+========================================= */
 
-document.head.appendChild(style);
+document
+    .querySelectorAll("button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+            }
+        );
+
+    });
