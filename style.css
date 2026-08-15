@@ -8,24 +8,17 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
     width: 100%;
     min-height: 100%;
-
-    overflow-x: hidden;
+    overflow: hidden;
 }
-
 
 body {
     color: #373236;
-
     background: #eeeae3;
-
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 
@@ -38,106 +31,55 @@ body {
 .gift-page {
 
     background:
-
         linear-gradient(
             rgba(255,255,255,.28),
             rgba(255,255,255,.20)
         ),
-
         url("assets/background.jpg");
 
     background-size: cover;
-
     background-position: center;
-
-    background-attachment: fixed;
 }
 
 
 /* =========================================
-   CREATE YOUR OWN
-========================================= */
-
-.create-btn {
-
-    position: absolute;
-
-    top: 30px;
-
-    right: 0;
-
-    z-index: 20;
-
-    padding:
-        15px
-        30px;
-
-    border:
-
-        2px solid
-        #e5a0b2;
-
-    border-radius:
-        50px
-        0
-        0
-        50px;
-
-    background:
-        #fffdfa;
-
-    color:
-        #c96583;
-
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-}
-
-
-/* =========================================
-   VOLUME SCREEN
+   TRANG 1
 ========================================= */
 
 .volume-screen {
 
     position: fixed;
-
     inset: 0;
 
-    z-index: 9999;
+    z-index: 100;
 
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+
+    transform: translateX(0);
 
     transition:
-        opacity .65s ease,
-        visibility .65s ease;
+        transform .7s
+        cubic-bezier(.77,0,.18,1);
 }
 
 
-.volume-screen.hide {
+/* Khi bấm OKAY */
 
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
+.volume-screen.next {
+    transform: translateX(-100%);
 }
 
 
-/* khung giữa */
+/* =========================================
+   KHUNG TRANG 1
+========================================= */
 
 .volume-paper {
 
     position: absolute;
 
     top: 50%;
-
     left: 50%;
 
     transform:
@@ -146,11 +88,9 @@ body {
     width:
         calc(100% - 100px);
 
-    max-width:
-        730px;
+    max-width: 730px;
 
-    height:
-        78vh;
+    height: 78vh;
 
     border:
         1px solid
@@ -161,14 +101,15 @@ body {
 }
 
 
-/* nội dung */
+/* =========================================
+   NỘI DUNG TRANG 1
+========================================= */
 
 .volume-content {
 
     position: absolute;
 
     top: 50%;
-
     left: 50%;
 
     transform:
@@ -176,17 +117,13 @@ body {
 
     width: 95%;
 
-    text-align:
-        center;
+    text-align: center;
 }
 
 
-/* tiêu đề */
-
 .volume-content h1 {
 
-    color:
-        #d76486;
+    color: #d76486;
 
     font-family:
         Georgia,
@@ -200,36 +137,25 @@ body {
             80px
         );
 
-    line-height:
-        .98;
+    line-height: .98;
 
-    font-style:
-        italic;
+    font-style: italic;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
     text-shadow:
-
         3px 3px 0 white,
-
         -2px -2px 0 white,
-
         2px -2px 0 white,
-
         -2px 2px 0 white;
 }
 
 
-/* mô tả */
-
 .volume-content p {
 
-    margin-top:
-        45px;
+    margin-top: 45px;
 
-    color:
-        #343135;
+    color: #343135;
 
     font-family:
         "Comic Sans MS",
@@ -243,36 +169,31 @@ body {
             30px
         );
 
-    line-height:
-        1.7;
+    line-height: 1.7;
 
-    transform:
-        rotate(-1deg);
+    transform: rotate(-1deg);
 
     text-shadow:
         2px 2px white;
 }
 
 
-/* OKAY */
+/* =========================================
+   OKAY
+========================================= */
 
 .okay-btn {
 
-    margin-top:
-        70px;
+    margin-top: 70px;
 
-    width:
-        220px;
-
-    height:
-        75px;
+    width: 220px;
+    height: 75px;
 
     border:
         6px solid
         #dc7091;
 
-    border-radius:
-        50px;
+    border-radius: 50px;
 
     background:
         #fffaf4;
@@ -280,71 +201,75 @@ body {
     color:
         #d36685;
 
-    font-size:
-        22px;
+    font-size: 22px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
         transform .2s;
 }
 
-
 .okay-btn:active {
-
-    transform:
-        scale(.93);
+    transform: scale(.93);
 }
 
 
 /* =========================================
-   MAIN FOUR BOX PAGE
+   TRANG 2 - FOUR BOX
 ========================================= */
 
 .main-page {
 
-    position: relative;
+    position: fixed;
+    inset: 0;
 
-    display: none;
+    z-index: 50;
 
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: auto;
 
     padding:
         30px
         16px
         80px;
+
+    transform:
+        translateX(100%);
+
+    transition:
+        transform .7s
+        cubic-bezier(.77,0,.18,1);
 }
 
 
 .main-page.show {
 
-    display: block;
+    transform:
+        translateX(0);
 }
 
 
-/* header */
+/* =========================================
+   HEADER
+========================================= */
 
 .header {
 
-    text-align:
-        center;
+    text-align: center;
 
-    padding-top:
-        130px;
+    padding-top: 130px;
 
-    margin-bottom:
-        95px;
+    margin-bottom: 95px;
 }
 
 
 .header h1 {
 
-    color:
-        #d96586;
+    color: #d96586;
 
     font-family:
         Georgia,
@@ -358,27 +283,21 @@ body {
             75px
         );
 
-    font-style:
-        italic;
+    font-style: italic;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    line-height:
-        1;
+    line-height: 1;
 
-    letter-spacing:
-        -2px;
+    letter-spacing: -2px;
 }
 
 
 .header p {
 
-    margin-top:
-        15px;
+    margin-top: 15px;
 
-    color:
-        #363236;
+    color: #363236;
 
     font-family:
         "Comic Sans MS",
@@ -392,28 +311,23 @@ body {
             27px
         );
 
-    transform:
-        rotate(-1deg);
+    transform: rotate(-1deg);
 }
 
 
 /* =========================================
-   4 BOX
+   4 Ô
 ========================================= */
 
 .box-grid {
 
-    width:
-        100%;
+    width: 100%;
 
-    max-width:
-        600px;
+    max-width: 600px;
 
-    margin:
-        auto;
+    margin: auto;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(2, 1fr);
@@ -424,30 +338,18 @@ body {
 }
 
 
-/* box */
-
 .gift-card {
 
-    position:
-        relative;
+    width: 100%;
 
-    width:
-        100%;
+    aspect-ratio: 1 / 1;
 
-    aspect-ratio:
-        1 / 1;
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
+    justify-content: center;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    padding:
-        15px;
+    padding: 15px;
 
     border:
         5px solid
@@ -459,11 +361,9 @@ body {
     background:
         rgba(255,255,255,.96);
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
     box-shadow:
         0
@@ -497,24 +397,16 @@ body {
 }
 
 
-/* ảnh trong box */
-
 .gift-card img {
 
-    width:
-        76%;
+    width: 76%;
+    height: 76%;
 
-    height:
-        76%;
+    object-fit: contain;
 
-    object-fit:
-        contain;
+    user-select: none;
 
-    user-select:
-        none;
-
-    -webkit-user-drag:
-        none;
+    -webkit-user-drag: none;
 
     transition:
         transform .3s;
@@ -529,40 +421,34 @@ body {
 
 
 /* =========================================
-   GIFT DETAIL PAGE
+   TRANG CHI TIẾT QUÀ
 ========================================= */
 
 .gift-page {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        500;
+    z-index: 200;
 
-    display:
-        none;
+    display: none;
 
-    min-height:
-        100vh;
+    width: 100%;
+    height: 100vh;
 
-    overflow-y:
-        auto;
+    overflow-y: auto;
 
     padding:
-        90px
-        25px
-        50px;
+        85px
+        18px
+        45px;
 }
 
 
 .gift-page.show {
 
-    display:
-        block;
+    display: block;
 
     animation:
         pageIn .35s ease;
@@ -573,8 +459,7 @@ body {
 
     from {
 
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
             translateX(30px);
@@ -582,8 +467,7 @@ body {
 
     to {
 
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
             translateX(0);
@@ -592,22 +476,17 @@ body {
 
 
 /* =========================================
-   BACK BUTTON
+   BACK
 ========================================= */
 
 .back-btn {
 
-    position:
-        fixed;
+    position: fixed;
 
-    top:
-        25px;
+    top: 20px;
+    left: 15px;
 
-    left:
-        20px;
-
-    z-index:
-        20;
+    z-index: 20;
 
     padding:
         12px
@@ -621,7 +500,7 @@ body {
         50px;
 
     background:
-        rgba(255,255,255,.92);
+        rgba(255,255,255,.95);
 
     color:
         #c96280;
@@ -646,13 +525,6 @@ body {
 }
 
 
-.back-btn:hover {
-
-    transform:
-        translateX(-4px);
-}
-
-
 .back-btn:active {
 
     transform:
@@ -661,7 +533,7 @@ body {
 
 
 /* =========================================
-   GIFT CONTENT
+   NỘI DUNG QUÀ
 ========================================= */
 
 .gift-inner {
@@ -676,8 +548,7 @@ body {
         auto;
 
     padding:
-        40px
-        25px;
+        40px 25px;
 
     border:
         1px solid
@@ -691,8 +562,6 @@ body {
 }
 
 
-/* ảnh lớn */
-
 .gift-big-image {
 
     width:
@@ -705,31 +574,21 @@ body {
         contain;
 
     margin:
-        20px
-        auto;
+        20px auto;
 }
 
-
-/* ảnh nhỏ */
 
 .gift-small-image {
 
-    width:
-        150px;
+    width: 150px;
+    height: 150px;
 
-    height:
-        150px;
-
-    object-fit:
-        contain;
+    object-fit: contain;
 
     margin:
-        10px
-        auto;
+        10px auto;
 }
 
-
-/* title */
 
 .gift-inner h2 {
 
@@ -756,13 +615,10 @@ body {
 }
 
 
-/* divider */
-
 .divider {
 
     margin:
-        18px
-        0;
+        18px 0;
 
     color:
         #d76586;
@@ -778,8 +634,7 @@ body {
         550px;
 
     margin:
-        15px
-        auto;
+        15px auto;
 
     color:
         #4b4548;
@@ -807,8 +662,7 @@ body {
         530px;
 
     margin:
-        25px
-        auto;
+        25px auto;
 
     padding:
         28px;
@@ -825,12 +679,6 @@ body {
 
     border-radius:
         5px;
-
-    box-shadow:
-        0
-        5px
-        20px
-        rgba(100,60,70,.05);
 }
 
 
@@ -885,9 +733,7 @@ body {
         min(450px, 100%);
 
     margin:
-        35px
-        auto
-        20px;
+        35px auto 20px;
 
     padding:
         15px;
@@ -904,48 +750,34 @@ body {
 }
 
 
-/* đĩa */
-
 .music-disc {
 
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
-    width:
-        65px;
-
-    height:
-        65px;
+    width: 65px;
+    height: 65px;
 
     display:
         flex;
 
     align-items:
         center;
-
     justify-content:
         center;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
-
         radial-gradient(
             circle,
-            #fff
-            0 10%,
-            #d87998
-            11% 30%,
-            #4b3039
-            31% 100%
+            #fff 0 10%,
+            #d87998 11% 30%,
+            #4b3039 31% 100%
         );
 
-    color:
-        white;
+    color: white;
 
-    font-size:
-        24px;
+    font-size: 24px;
 
     animation:
         spin 4s linear infinite;
@@ -971,12 +803,9 @@ body {
 }
 
 
-/* thông tin */
-
 .music-info {
 
-    flex:
-        1;
+    flex: 1;
 
     text-align:
         left;
@@ -1012,21 +841,14 @@ body {
 }
 
 
-/* play */
-
 .music-button {
 
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
-    width:
-        45px;
+    width: 45px;
+    height: 45px;
 
-    height:
-        45px;
-
-    border:
-        none;
+    border: none;
 
     border-radius:
         50%;
@@ -1056,7 +878,7 @@ body {
 
 
 /* =========================================
-   FINAL LETTER
+   BOX 4
 ========================================= */
 
 .final-letter {
@@ -1065,8 +887,7 @@ body {
         520px;
 
     margin:
-        30px
-        auto;
+        30px auto;
 
     padding:
         30px;
@@ -1100,7 +921,7 @@ body {
 
 
 /* =========================================
-   MOBILE
+   IPHONE
 ========================================= */
 
 @media (max-width: 600px) {
@@ -1139,15 +960,6 @@ body {
     }
 
 
-    .main-page {
-
-        padding:
-            30px
-            16px
-            70px;
-    }
-
-
     .header {
 
         padding-top:
@@ -1175,8 +987,7 @@ body {
     .box-grid {
 
         gap:
-            75px
-            28px;
+            75px 28px;
     }
 
 
@@ -1187,33 +998,6 @@ body {
 
         border-radius:
             43px;
-    }
-
-
-    .gift-page {
-
-        padding:
-            85px
-            18px
-            40px;
-    }
-
-
-    .gift-inner {
-
-        padding:
-            35px
-            18px;
-    }
-
-
-    .back-btn {
-
-        top:
-            20px;
-
-        left:
-            15px;
     }
 
 
@@ -1229,7 +1013,7 @@ body {
 
 
 /* =========================================
-   MÀN HÌNH RẤT NHỎ
+   IPHONE NHỎ
 ========================================= */
 
 @media (max-width: 380px) {
@@ -1254,8 +1038,7 @@ body {
     .box-grid {
 
         gap:
-            55px
-            20px;
+            55px 20px;
     }
 
 
