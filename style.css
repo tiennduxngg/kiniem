@@ -258,22 +258,22 @@ img {
 .back {
     position: fixed;
 
-    top: 27px;
-    left: 30px;
+    top: 20px;
+    left: 18px;
 
     z-index: 9999;
 
-    width: 190px;
-    height: 60px;
+    width: 130px;
+    height: 42px;
 
-    border: 3px solid #d97996;
-    border-radius: 50px;
+    border: 2px solid #d97996;
+    border-radius: 30px;
 
     background: #fffaf8;
 
     color: #c75e7c;
 
-    font-size: 18px;
+    font-size: 13px;
     font-weight: bold;
 
     cursor: pointer;
