@@ -1,12 +1,11 @@
-/* =========================================
-   ELEMENTS
-========================================= */
+/* =====================================
+   LẤY ELEMENT
+===================================== */
+
+const okayBtn = document.getElementById("okayBtn");
 
 const volumeScreen =
     document.getElementById("volumeScreen");
-
-const okayBtn =
-    document.getElementById("okayBtn");
 
 const mainPage =
     document.getElementById("mainPage");
@@ -24,23 +23,48 @@ const musicDisc =
 let currentBox = null;
 
 
-/* =========================================
+/* =====================================
    OKAY
-   TRANG 1 → TRANG 2
-========================================= */
+===================================== */
 
-okayBtn.addEventListener(
-    "click",
-    async () => {
+okayBtn.onclick = function () {
 
-        /*
-         * Phát nhạc sau thao tác
-         * của người dùng.
-         */
+    console.log("OKAY đã được bấm");
 
-        try {
 
-            await music.play();
+    /*
+     * 1. Trang 2 xuất hiện
+     */
+
+    mainPage.classList.add("active");
+
+
+    /*
+     * 2. Trang 1 trượt sang trái
+     */
+
+    volumeScreen.style.transform =
+        "translateX(-100%)";
+
+
+    /*
+     * 3. Sau animation thì ẩn trang 1
+     */
+
+    setTimeout(function () {
+
+        volumeScreen.style.display =
+            "none";
+
+    }, 700);
+
+
+    /*
+     * 4. Thử bật nhạc
+     */
+
+    music.play()
+        .then(function () {
 
             musicDisc.classList.add(
                 "playing"
@@ -49,52 +73,22 @@ okayBtn.addEventListener(
             musicButton.innerHTML =
                 "❚❚";
 
-        } catch (error) {
+        })
+        .catch(function (error) {
 
             console.log(
-                "Không thể tự phát nhạc:",
+                "Trình duyệt chặn autoplay:",
                 error
             );
 
-        }
+        });
+
+};
 
 
-        /*
-         * Trang volume trượt sang trái
-         */
-
-        volumeScreen.classList.add(
-            "next"
-        );
-
-
-        /*
-         * Trang Four Box trượt vào
-         */
-
-        mainPage.classList.add(
-            "show"
-        );
-
-
-        /*
-         * Sau khi chuyển trang
-         */
-
-        setTimeout(() => {
-
-            document.body.style.overflow =
-                "";
-
-        }, 700);
-
-    }
-);
-
-
-/* =========================================
-   MỞ MỘT HỘP
-========================================= */
+/* =====================================
+   MỞ BOX
+===================================== */
 
 function openBox(number) {
 
@@ -102,165 +96,116 @@ function openBox(number) {
 
 
     /*
-     * Ẩn trang Four Box
+     * Ẩn FOUR BOX
      */
 
     mainPage.classList.remove(
-        "show"
+        "active"
     );
 
 
     /*
-     * Đóng các trang quà khác
+     * Đóng tất cả box
      */
 
-    document
-        .querySelectorAll(".gift-page")
-        .forEach(page => {
+    const pages =
+        document.querySelectorAll(
+            ".gift-page"
+        );
 
-            page.classList.remove(
-                "show"
-            );
+    pages.forEach(function (page) {
 
-        });
+        page.classList.remove(
+            "active"
+        );
+
+    });
 
 
     /*
-     * Tìm trang tương ứng
+     * Mở box được chọn
      */
 
-    const selectedPage =
+    const page =
         document.getElementById(
             "boxPage" + number
         );
 
 
-    if (!selectedPage) {
-        return;
+    if (page) {
+
+        page.classList.add(
+            "active"
+        );
+
+        page.scrollTop = 0;
+
     }
 
-
-    /*
-     * Hiện trang
-     */
-
-    selectedPage.classList.add(
-        "show"
-    );
-
-
-    /*
-     * Cuộn lên đầu
-     */
-
-    selectedPage.scrollTop = 0;
-
-
-    /*
-     * Không scroll nền
-     */
-
-    document.body.style.overflow =
-        "hidden";
 }
 
 
-/* =========================================
+/* =====================================
    BACK
-========================================= */
+===================================== */
 
 function goBack() {
 
     /*
-     * Đóng trang quà
+     * Đóng box
      */
 
-    document
-        .querySelectorAll(".gift-page")
-        .forEach(page => {
+    const pages =
+        document.querySelectorAll(
+            ".gift-page"
+        );
 
-            page.classList.remove(
-                "show"
-            );
+    pages.forEach(function (page) {
 
-        });
+        page.classList.remove(
+            "active"
+        );
+
+    });
 
 
     /*
-     * Hiện lại Four Box
+     * Hiện lại FOUR BOX
      */
 
     mainPage.classList.add(
-        "show"
+        "active"
     );
 
 
-    /*
-     * Cho phép scroll
-     */
-
-    document.body.style.overflow =
-        "";
-
-
     currentBox = null;
+
 }
 
 
-/* =========================================
+/* =====================================
    MUSIC BUTTON
-========================================= */
+===================================== */
 
-musicButton.addEventListener(
-    "click",
-    async () => {
+musicButton.onclick = function () {
 
-        if (music.paused) {
+    if (music.paused) {
 
-            try {
-
-                await music.play();
-
-                musicButton.innerHTML =
-                    "❚❚";
+        music.play()
+            .then(function () {
 
                 musicDisc.classList.add(
                     "playing"
                 );
 
-            } catch (error) {
+                musicButton.innerHTML =
+                    "❚❚";
 
-                console.log(
-                    "Không thể phát nhạc:",
-                    error
-                );
+            });
 
-            }
+    } else {
 
-        } else {
-
-            music.pause();
-
-            musicButton.innerHTML =
-                "▶";
-
-            musicDisc.classList.remove(
-                "playing"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   MUSIC PAUSE
-========================================= */
-
-music.addEventListener(
-    "pause",
-    () => {
+        music.pause();
 
         musicDisc.classList.remove(
             "playing"
@@ -270,16 +215,17 @@ music.addEventListener(
             "▶";
 
     }
-);
+
+};
 
 
-/* =========================================
+/* =====================================
    ESC = BACK
-========================================= */
+===================================== */
 
 document.addEventListener(
     "keydown",
-    event => {
+    function (event) {
 
         if (
             event.key === "Escape" &&
