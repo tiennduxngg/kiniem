@@ -15,98 +15,285 @@ body {
 }
 
 body {
-    background: #f5f1eb;
-    color: #3f393b;
-    font-family: Arial, sans-serif;
     overflow-x: hidden;
+    background: #f6f2eb;
+    color: #403a3d;
+    font-family: Arial, sans-serif;
 }
 
 button {
     font-family: inherit;
-    cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
 
 img {
+    display: block;
     max-width: 100%;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f6f3ed;
+
+    transition:
+        transform .6s ease,
+        opacity .6s ease;
+}
+
+#intro.hide {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-box {
+    width: min(650px, 80%);
+    text-align: center;
+}
+
+.intro-box h1 {
+    color: #d56585;
+
+    font-family: Georgia, serif;
+    font-size: clamp(45px, 10vw, 75px);
+    font-style: italic;
+
+    line-height: 1;
+
+    text-shadow: 3px 3px #fff;
+}
+
+.intro-box p {
+    margin-top: 35px;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+#okayBtn {
+    width: 210px;
+    height: 65px;
+
+    margin-top: 45px;
+
+    border: 4px solid #d56585;
+    border-radius: 50px;
+
+    background: #fffaf7;
+
+    color: #d56585;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#okayBtn:active {
+    transform: scale(.94);
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#home {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 105px 20px 70px;
+
+    background: #f6f2eb;
+
+    transform: translateX(100%);
+
+    transition: transform .6s ease;
+}
+
+#home.show {
+    transform: translateX(0);
+}
+
+.home-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.home-title {
+    text-align: center;
+}
+
+.home-title h1 {
+    color: #d56585;
+
+    font-family: Georgia, serif;
+    font-size: clamp(45px, 10vw, 75px);
+    font-style: italic;
+
+    line-height: 1;
+
+    text-shadow: 3px 3px #fff;
+}
+
+.home-title p {
+    margin-top: 15px;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   4 BOX
+========================================================= */
+
+.boxes {
+    width: 100%;
+
+    margin-top: 75px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 45px 25px;
+}
+
+.box {
+    width: 100%;
+    aspect-ratio: 1;
+
+    border: 5px solid #d56585;
+    border-radius: 42px;
+
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(150,70,95,.08);
+
+    transition: transform .2s ease;
+}
+
+.box img {
+    width: 75%;
+    height: 75%;
+
+    object-fit: contain;
+}
+
+.box:active {
+    transform: scale(.93);
+}
+
+
+/* =========================================================
+   TẤT CẢ PAGE
+========================================================= */
+
+.content-page {
+    position: fixed;
+    inset: 0;
+
+    z-index: 500;
+
+    display: none;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content-page.active {
     display: block;
 }
 
 
 /* =========================================================
-   TRANG CHUNG
-========================================================= */
-
-.content-page {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
-}
-
-
-/* =========================================================
-   NÚT BACK
+   BACK
 ========================================================= */
 
 .back {
     position: fixed;
-    top: 30px;
+
+    top: 27px;
     left: 30px;
 
-    width: 195px;
-    height: 62px;
+    z-index: 9999;
 
-    border: 3px solid #df82a0;
+    width: 190px;
+    height: 60px;
+
+    border: 3px solid #d97996;
     border-radius: 50px;
 
-    background: #fffdf9;
-    color: #c96584;
+    background: #fffaf8;
+
+    color: #c75e7c;
 
     font-size: 18px;
-    font-weight: 700;
+    font-weight: bold;
 
-    z-index: 999;
+    cursor: pointer;
 
-    transition:
-        transform .2s ease,
-        background .2s ease;
+    box-shadow:
+        0 4px 12px rgba(100,50,70,.06);
 }
 
 .back:active {
-    transform: scale(.95);
-}
-
-.back:hover {
-    background: #fff4f7;
+    transform: scale(.94);
 }
 
 
 /* =========================================================
-   BOX 1 - FLOWER PAGE
+   BOX 1
 ========================================================= */
 
 .flower-page {
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.28),
-            rgba(255,255,255,.28)
-        ),
-        #f4f1eb;
-
-    overflow-x: hidden;
-    overflow-y: auto;
+    background: #f4f1eb;
 }
-
-
-/* vùng chứa */
 
 .flower-scene {
     position: relative;
@@ -114,29 +301,25 @@ img {
     width: 100%;
     max-width: 650px;
 
-    min-height: 100vh;
     min-height: 100dvh;
 
     margin: 0 auto;
 
-    padding-top: 135px;
+    padding-top: 120px;
 
     overflow: hidden;
 }
 
 
-/* =========================================================
-   HOA LỚN
-========================================================= */
+/* HOA */
 
 .flower-deco {
     position: absolute;
 
     top: 135px;
-    left: 40px;
+    left: 38px;
 
-    width: 185px;
-    height: auto;
+    width: 175px;
 
     z-index: 5;
 
@@ -144,32 +327,27 @@ img {
 
     filter:
         drop-shadow(
-            0 8px 10px
-            rgba(80,40,60,.12)
+            0 8px 10px rgba(80,40,60,.12)
         );
-
-    pointer-events: none;
 }
 
 
-/* =========================================================
-   PHONG THƯ HỒNG
-========================================================= */
+/* PHONG THƯ */
 
 .pink-envelope {
     position: absolute;
 
     top: 235px;
-    right: 25px;
+    right: 20px;
 
-    width: 365px;
-    height: 270px;
+    width: 350px;
+    height: 255px;
 
     background:
         linear-gradient(
             135deg,
-            #e1819f 0%,
-            #d96184 100%
+            #e17d9c,
+            #d45c80
         );
 
     border-radius: 8px;
@@ -177,14 +355,10 @@ img {
     transform: rotate(5deg);
 
     box-shadow:
-        0 12px 22px
-        rgba(100,50,70,.15);
+        0 12px 22px rgba(90,45,65,.14);
 
     z-index: 1;
 }
-
-
-/* phần nắp phong thư */
 
 .envelope-flap {
     position: absolute;
@@ -193,13 +367,13 @@ img {
     left: 0;
 
     width: 100%;
-    height: 135px;
+    height: 128px;
 
     background:
         linear-gradient(
             135deg,
-            #e68ba7,
-            #d96b8a
+            #e78ba7,
+            #d86687
         );
 
     clip-path:
@@ -211,423 +385,525 @@ img {
 }
 
 
-/* =========================================================
-   TỜ GIẤY
-========================================================= */
+/* TỜ GIẤY */
 
 .flower-note {
     position: relative;
 
     z-index: 10;
 
-    width: 480px;
+    width: 470px;
     max-width: 72%;
 
-    min-height: 390px;
+    min-height: 380px;
 
     margin:
-        160px auto 70px;
+        155px auto 60px;
 
     padding:
-        45px 30px 50px;
+        43px 25px 45px;
 
     background:
         repeating-linear-gradient(
             to bottom,
-            #fffdf5 0px,
+            #fffdf5 0,
             #fffdf5 29px,
-            #ece6d9 30px,
+            #ebe5d9 30px,
             #fffdf5 31px
         );
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     box-shadow:
-        0 12px 25px
-        rgba(70,50,55,.14);
+        0 12px 24px rgba(70,50,55,.14);
 
     transform: rotate(-2deg);
 
     text-align: center;
 }
 
-
-/* =========================================================
-   TIÊU ĐỀ BOX 1
-========================================================= */
-
 .flower-note h1 {
-    margin: 0 0 28px;
+    margin-bottom: 25px;
 
     color: #d36383;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-family: Georgia, serif;
 
-    font-size: 34px;
-    font-weight: 700;
+    font-size: 33px;
 
     font-style: italic;
 
     line-height: 1.15;
 }
 
-
-/* =========================================================
-   NỘI DUNG BOX 1
-========================================================= */
-
 .flower-note p {
-    width: 100%;
-    max-width: 370px;
+    max-width: 350px;
 
-    margin: 0 auto;
-
-    color: #484245;
+    margin: auto;
 
     font-family:
         "Comic Sans MS",
         "Segoe Print",
         cursive;
 
-    font-size: 14px;
+    font-size: 13.5px;
 
-    line-height: 1.85;
-
-    text-align: center;
+    line-height: 1.8;
 }
-
-
-/* =========================================================
-   TRÁI TIM TRÊN TỜ GIẤY
-========================================================= */
 
 .note-heart {
     position: absolute;
 
-    color: #dc8ba2;
+    color: #dc8aa2;
 
-    font-size: 34px;
-
-    font-family:
-        Georgia,
-        serif;
+    font-size: 31px;
 
     opacity: .7;
-
-    line-height: 1;
 }
 
 .note-heart.left {
-    left: 22px;
-    bottom: 78px;
+    left: 20px;
+    bottom: 70px;
 }
 
 .note-heart.right {
-    right: 24px;
-    bottom: 78px;
+    right: 23px;
+    bottom: 70px;
 }
-
-
-/* =========================================================
-   CHỮ KÝ
-========================================================= */
 
 .note-sign {
     position: absolute;
 
     right: 28px;
-    bottom: 30px;
+    bottom: 25px;
 
-    color: #d26383;
+    color: #d36383;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-family: Georgia, serif;
 
-    font-size: 21px;
+    font-size: 20px;
 
     font-style: italic;
 }
 
 
-/* =========================================================
-   HOA STICKER DƯỚI TỜ GIẤY
-========================================================= */
+/* HOA NHỎ */
 
 .flower-sticker {
     position: absolute;
 
-    left: 20px;
-    bottom: 25px;
+    left: 18px;
+    bottom: 20px;
 
-    width: 145px;
-    height: auto;
+    width: 135px;
 
     z-index: 20;
 
-    object-fit: contain;
-
     filter:
         drop-shadow(
-            0 7px 10px
-            rgba(70,40,50,.14)
+            0 6px 10px rgba(60,40,50,.12)
         );
-
-    pointer-events: none;
 }
 
 
 /* =========================================================
-   TRANG HOME / FOUR BOX
+   LITTLE PAGE
 ========================================================= */
 
-.home-page {
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-
-    padding:
-        120px 25px 70px;
-
-    background:
-        #f5f1eb;
+.little-page {
+    background: #f2f0eb;
 }
 
-
-/* 4 box */
-
-.box-container {
-    width: 100%;
-    max-width: 620px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 30px;
-}
-
-
-/* từng box */
-
-.little-box {
-    position: relative;
-
-    aspect-ratio: 1 / 1;
-
-    background: #fffdfb;
-
-    border: 4px solid #df7898;
-
-    border-radius: 42px;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    box-shadow:
-        0 7px 15px
-        rgba(120,70,85,.08);
-
-    transition:
-        transform .2s ease;
-}
-
-.little-box:active {
-    transform: scale(.96);
-}
-
-.little-box img {
-    width: 62%;
-    height: 62%;
-
-    object-fit: contain;
-}
-
-
-/* =========================================================
-   BOX 2 - LITTLE NOTES
-========================================================= */
-
-.notes-page {
-    min-height: 100vh;
-
-    padding:
-        120px 25px 70px;
-
-    background:
-        #f5f1eb;
-}
-
-.notes-container {
-    width: 100%;
-    max-width: 700px;
+.little-container {
+    width: min(720px, 94%);
 
     margin: auto;
 
-    display: flex;
-    flex-direction: column;
-
-    gap: 35px;
+    padding:
+        110px 0 70px;
 }
 
 
-/* từng lá thư */
+/* từng note */
 
-.little-note {
+.little-card {
     position: relative;
 
     width: 100%;
-    min-height: 300px;
 
-    padding:
-        45px 30px;
+    min-height: 250px;
 
-    border-radius: 25px;
+    margin-bottom: 40px;
 
-    overflow: hidden;
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    border-radius: 18px;
 
     box-shadow:
-        0 10px 20px
-        rgba(80,50,60,.10);
+        0 10px 20px rgba(70,50,60,.10);
 }
 
 
 /* note 1 */
 
-.little-note.note-one {
-    background: #fff5f7;
+.card-white {
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #fffafa 0,
+            #fffafa 31px,
+            #eddee2 32px,
+            #fffafa 33px
+        );
 
-    border:
-        3px solid #edbfd0;
-
-    transform: rotate(-1deg);
+    transform: rotate(-.7deg);
 }
 
 
 /* note 2 */
 
-.little-note.note-two {
-    background: #f9dce6;
+.card-pink-dots {
+    background-color: #f8dce5;
 
-    border:
-        3px solid #df7596;
+    background-image:
+        radial-gradient(
+            #e3b4c4 1.5px,
+            transparent 1.5px
+        );
 
-    transform: rotate(1deg);
+    background-size: 18px 18px;
+
+    border-left:
+        6px solid #d66585;
+
+    transform: rotate(.6deg);
 }
 
 
 /* note 3 */
 
-.little-note.note-three {
-    background: #fff4f5;
+.card-pink-lines {
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #f7dce4 0,
+            #f7dce4 31px,
+            #e8c3cd 32px,
+            #f7dce4 33px
+        );
 
-    border:
-        3px solid #edb7c8;
-
-    transform: rotate(-1deg);
+    transform: rotate(-.5deg);
 }
 
 
-/* note 4 */
+/* NOTE 4 */
 
-.little-note.note-four {
-    background: #f7dce5;
-
-    border:
-        3px solid #df7897;
-
-    transform: rotate(1deg);
+.card-white:nth-of-type(4) {
+    transform: rotate(.7deg);
 }
 
 
-/* nội dung note */
+/* ảnh */
 
-.little-note h2 {
-    color: #cf6584;
+.little-photo {
+    width: 135px;
 
-    font-family:
-        Georgia,
-        serif;
+    flex: 0 0 135px;
 
-    font-size: 26px;
+    padding:
+        7px 7px 23px;
+
+    background: white;
+
+    box-shadow:
+        0 7px 15px rgba(40,30,35,.15);
+
+    transform: rotate(-5deg);
+}
+
+.little-photo.rotate-left {
+    transform: rotate(-6deg);
+}
+
+.little-photo.rotate-right {
+    transform: rotate(5deg);
+}
+
+.little-photo img {
+    width: 100%;
+    height: 130px;
+
+    object-fit: cover;
+}
+
+
+/* text */
+
+.little-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.little-text small {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c55c7a;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.little-text h3 {
+    margin-bottom: 9px;
+
+    color: #d36383;
+
+    font-family: Georgia, serif;
+
+    font-size: 19px;
 
     font-style: italic;
 
-    margin-bottom: 20px;
+    line-height: 1.2;
 }
 
-.little-note p {
-    color: #494347;
+.little-text p {
+    color: #51494c;
 
     font-family:
         "Comic Sans MS",
         "Segoe Print",
         cursive;
 
-    font-size: 14px;
+    font-size: 12.5px;
 
-    line-height: 1.8;
+    line-height: 1.55;
+}
+
+.paper-tab {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 35px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    background: #d56585;
+
+    border-radius:
+        0 0 9px 9px;
 }
 
 
 /* =========================================================
-   TRANG MUSIC
+   MUSIC
 ========================================================= */
 
 .music-page {
-    min-height: 100vh;
+    background: #fff5f7;
+}
+
+.music-container {
+    width: min(650px, 92%);
+
+    margin: auto;
 
     padding:
-        120px 25px 80px;
-
-    background: #f6f1eb;
-}
-
-.music-card {
-    width: 100%;
-    max-width: 650px;
-
-    margin: 40px auto;
-
-    padding: 40px 25px;
-
-    background: #fffaf8;
-
-    border-radius: 30px;
+        110px 0 70px;
 
     text-align: center;
-
-    box-shadow:
-        0 10px 25px
-        rgba(80,50,60,.08);
 }
 
-.music-card h1 {
-    color: #d46383;
+.music-cover {
+    width: min(400px, 82vw);
+
+    aspect-ratio: 1;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+.music-cover img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.music-container h2 {
+    margin-top: 35px;
+
+    color: #d36383;
 
     font-family: Georgia, serif;
 
-    font-size: 40px;
+    font-size: 42px;
 
     font-style: italic;
-
-    margin-bottom: 20px;
 }
 
-.music-card p {
-    color: #595052;
+.music-heart {
+    margin: 12px;
+
+    color: #d36383;
+
+    font-size: 38px;
+}
+
+
+/* PLAYER */
+
+.player {
+    width: 100%;
+
+    margin-top: 35px;
+
+    padding: 13px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    border-radius: 35px;
+
+    background: #fff;
+
+    box-shadow:
+        0 10px 25px rgba(100,50,70,.12);
+}
+
+.disc {
+    width: 65px;
+    height: 65px;
+
+    flex: 0 0 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e07494 0 20%,
+            #51343d 21% 100%
+        );
+
+    color: white;
+
+    font-size: 23px;
+
+    animation:
+        spin 4s linear infinite;
+
+    animation-play-state: paused;
+}
+
+.disc.playing {
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.song-info {
+    flex: 1;
+
+    min-width: 0;
+
+    text-align: left;
+}
+
+.song-info strong {
+    display: block;
+
+    overflow: hidden;
+
+    font-size: 16px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.song-info span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #997c85;
+
+    font-size: 11px;
+}
+
+.play-btn {
+    width: 58px;
+    height: 58px;
+
+    flex: 0 0 58px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #d56585;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+.play-btn:active {
+    transform: scale(.9);
+}
+
+
+/* =========================================================
+   BOX 4
+========================================================= */
+
+#box4 {
+    background: #f5f1eb;
+}
+
+.letter-box {
+    width: min(600px, 90%);
+
+    margin:
+        30px auto 60px;
+
+    padding: 30px;
+
+    background: rgba(255,255,255,.85);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 22px rgba(70,50,60,.08);
+}
+
+.letter-box p {
+    margin-bottom: 18px;
 
     font-family:
         "Comic Sans MS",
@@ -637,308 +913,319 @@ img {
     font-size: 15px;
 
     line-height: 1.8;
-
-    margin-bottom: 35px;
 }
 
+.letter-box .signature {
+    margin-bottom: 0;
 
-/* nút play */
+    color: #d36383;
 
-.play-button {
-    width: 70px;
-    height: 70px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #d96889;
-
-    color: white;
-
-    font-size: 27px;
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    box-shadow:
-        0 7px 15px
-        rgba(190,80,110,.2);
-
-    transition:
-        transform .2s ease;
-}
-
-.play-button:active {
-    transform: scale(.9);
+    text-align: right;
 }
 
 
 /* =========================================================
-   MOBILE - IPHONE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
 
+    /* INTRO */
+
+    .intro-box {
+        width: 82%;
+    }
+
+    .intro-box h1 {
+        font-size: 45px;
+    }
+
+    .intro-box p {
+        font-size: 15px;
+    }
+
+
+    /* HOME */
+
+    #home {
+        padding:
+            100px 18px 60px;
+    }
+
+    .home-title h1 {
+        font-size: 47px;
+    }
+
+    .home-title p {
+        font-size: 15px;
+    }
+
+    .boxes {
+        margin-top: 60px;
+
+        gap:
+            38px 15px;
+    }
+
+    .box {
+        border-width: 4px;
+
+        border-radius: 34px;
+
+        padding: 13px;
+    }
+
+
     /* BACK */
 
     .back {
-        position: fixed;
+        top: 25px;
+        left: 25px;
 
-        top: 30px;
-        left: 30px;
+        width: 185px;
+        height: 58px;
 
-        width: 195px;
-        height: 62px;
-
-        font-size: 18px;
+        font-size: 17px;
     }
 
 
-    /* =========================
-       BOX 1
-    ========================= */
+    /* =====================================================
+       BOX 1 MOBILE
+    ===================================================== */
 
     .flower-scene {
-        width: 100%;
+        min-height: 850px;
 
-        min-height: 900px;
-
-        padding-top: 125px;
+        padding-top: 115px;
     }
-
-
-    /* hoa */
 
     .flower-deco {
         top: 125px;
+        left: 20px;
 
-        left: 25px;
-
-        width: 165px;
+        width: 145px;
     }
 
-
-    /* phong thư */
-
     .pink-envelope {
-        top: 220px;
+        top: 215px;
+        right: -8px;
 
-        right: -5px;
-
-        width: 61%;
-
-        height: 245px;
+        width: 59%;
+        height: 220px;
     }
 
     .envelope-flap {
-        height: 120px;
+        height: 110px;
     }
-
-
-    /* tờ giấy */
 
     .flower-note {
         width: 72%;
 
-        max-width: none;
-
-        min-height: 360px;
+        min-height: 340px;
 
         margin:
-            150px auto 55px;
+            145px auto 50px;
 
         padding:
-            38px 20px 40px;
-
-        border-radius: 9px;
+            34px 17px 38px;
     }
-
-
-    /* title */
 
     .flower-note h1 {
-        font-size: 28px;
+        font-size: 25px;
 
-        margin-bottom: 23px;
+        margin-bottom: 22px;
     }
 
-
-    /* text */
-
     .flower-note p {
-        font-size: 12.5px;
+        font-size: 11.5px;
 
         line-height: 1.75;
     }
 
-
-    /* heart */
-
     .note-heart {
-        font-size: 27px;
+        font-size: 26px;
     }
 
     .note-heart.left {
-        left: 18px;
-        bottom: 65px;
+        left: 16px;
+        bottom: 62px;
     }
 
     .note-heart.right {
-        right: 20px;
-        bottom: 65px;
+        right: 17px;
+        bottom: 62px;
     }
-
-
-    /* signature */
 
     .note-sign {
-        right: 22px;
-        bottom: 23px;
+        right: 20px;
+        bottom: 21px;
 
-        font-size: 19px;
+        font-size: 18px;
     }
-
-
-    /* sticker */
 
     .flower-sticker {
-        left: 10px;
-        bottom: 20px;
+        left: 7px;
+        bottom: 15px;
 
-        width: 125px;
+        width: 110px;
     }
 
 
-    /* =========================
-       4 BOX HOME
-    ========================= */
+    /* =====================================================
+       LITTLE MOBILE
+    ===================================================== */
 
-    .home-page {
-        padding:
-            110px 22px 50px;
-    }
-
-    .box-container {
-        gap: 20px;
-    }
-
-    .little-box {
-        border-width: 3px;
-
-        border-radius: 30px;
-    }
-
-    .little-box img {
-        width: 58%;
-        height: 58%;
-    }
-
-
-    /* =========================
-       LITTLE NOTES
-    ========================= */
-
-    .notes-page {
-        padding:
-            110px 18px 60px;
-    }
-
-    .notes-container {
-        gap: 25px;
-    }
-
-    .little-note {
-        min-height: 270px;
+    .little-container {
+        width: 92%;
 
         padding:
-            32px 22px;
-
-        border-radius: 20px;
+            105px 0 60px;
     }
 
-    .little-note h2 {
-        font-size: 23px;
+    .little-card {
+        min-height: 230px;
+
+        padding: 17px;
+
+        gap: 12px;
+
+        margin-bottom: 32px;
+
+        border-radius: 16px;
     }
 
-    .little-note p {
-        font-size: 13px;
+    .little-photo {
+        width: 105px;
 
-        line-height: 1.7;
-    }
+        flex-basis: 105px;
 
-
-    /* =========================
-       MUSIC
-    ========================= */
-
-    .music-page {
         padding:
-            110px 20px 60px;
+            6px 6px 19px;
     }
 
-    .music-card {
-        padding:
-            35px 20px;
-
-        border-radius: 25px;
+    .little-photo img {
+        height: 100px;
     }
 
-    .music-card h1 {
-        font-size: 32px;
+    .little-text small {
+        font-size: 7px;
+
+        letter-spacing: 1px;
     }
 
-    .music-card p {
+    .little-text h3 {
+        font-size: 15px;
+    }
+
+    .little-text p {
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       MUSIC MOBILE
+    ===================================================== */
+
+    .music-container {
+        width: 90%;
+
+        padding-top: 105px;
+    }
+
+    .music-cover {
+        width: 82vw;
+    }
+
+    .music-container h2 {
+        font-size: 34px;
+    }
+
+    .player {
+        padding: 11px;
+
+        gap: 9px;
+    }
+
+    .disc {
+        width: 57px;
+        height: 57px;
+
+        flex-basis: 57px;
+    }
+
+    .song-info strong {
         font-size: 14px;
     }
 
-    .play-button {
-        width: 65px;
-        height: 65px;
+    .song-info span {
+        font-size: 10px;
+    }
+
+    .play-btn {
+        width: 53px;
+        height: 53px;
+
+        flex-basis: 53px;
     }
 }
 
 
 /* =========================================================
-   IPHONE RẤT NHỎ
+   IPHONE NHỎ
 ========================================================= */
 
-@media (max-width: 390px) {
+@media (max-width: 380px) {
 
-    .flower-scene {
-        min-height: 850px;
+    .home-title h1 {
+        font-size: 42px;
+    }
+
+    .boxes {
+        gap: 30px 12px;
+    }
+
+    .box {
+        border-radius: 30px;
     }
 
     .flower-deco {
-        width: 145px;
-        left: 18px;
+        width: 130px;
     }
 
     .pink-envelope {
-        top: 215px;
-        width: 60%;
-        height: 220px;
+        width: 58%;
+        height: 205px;
     }
 
     .flower-note {
-        width: 73%;
-        min-height: 335px;
-
-        padding:
-            34px 17px;
+        width: 70%;
+        min-height: 320px;
     }
 
     .flower-note h1 {
-        font-size: 25px;
+        font-size: 23px;
     }
 
     .flower-note p {
-        font-size: 11.5px;
+        font-size: 10.5px;
     }
 
-    .flower-sticker {
-        width: 110px;
+    .little-photo {
+        width: 92px;
+        flex-basis: 92px;
+    }
+
+    .little-photo img {
+        height: 88px;
+    }
+
+    .little-text h3 {
+        font-size: 14px;
+    }
+
+    .little-text p {
+        font-size: 10px;
     }
 }
