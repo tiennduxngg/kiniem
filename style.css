@@ -273,7 +273,7 @@ img {
 
     color: #c75e7c;
 
-    font-size: 13px;
+    font-size: 10px;
     font-weight: bold;
 
     cursor: pointer;
@@ -395,7 +395,7 @@ img {
     width: 350px;
     max-width: 72%;
 
-    min-height: 380px;
+    min-height: 200px;
 
     margin:
         155px auto 60px;
