@@ -1,234 +1,441 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>FOURBOX 4U</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#7d5962">
+
+    <title>Four Box 4U</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- MÀN HÌNH MỞ ĐẦU -->
-<div id="welcome" class="screen active">
-    <div class="stars"></div>
+    <!-- =========================================
+         MÀN HÌNH 1 - TURN UP YOUR VOLUME
+    ========================================== -->
 
-    <div class="welcome-content">
-        <div class="small-title">A LITTLE GIFT FOR YOU</div>
+    <section id="volumeScreen" class="volume-screen">
 
-        <h1>FOUR<span>BOX</span></h1>
-
-        <p>
-            Có một chút gì đó<br>
-            mình muốn dành riêng cho bạn...
-        </p>
-
-        <button id="startBtn" class="main-btn">
-            MỞ QUÀ
+        <button class="create-btn">
+            CREATE YOUR OWN
         </button>
-    </div>
-</div>
 
+        <div class="volume-paper">
 
-<!-- MÀN HÌNH 4 HỘP -->
-<div id="boxesScreen" class="screen">
+            <div class="volume-content">
 
-    <div class="top-text">
-        <span>FOR YOU</span>
-        <h2>4 món quà nhỏ</h2>
-        <p>Hãy mở từng chiếc một nhé ♡</p>
-    </div>
+                <h1>
+                    🔊 Turn up<br>
+                    your volume
+                </h1>
 
-    <div class="boxes">
+                <p>
+                    Please turn on your volume for the<br>
+                    best experience!
+                </p>
 
-        <!-- BOX 1 -->
-        <div class="gift-box" data-box="1">
-            <div class="box-lid"></div>
-            <div class="box-body">
-                <span>01</span>
+                <button id="okayBtn" class="okay-btn">
+                    OKAY
+                </button>
+
             </div>
-            <div class="ribbon"></div>
+
         </div>
 
-        <!-- BOX 2 -->
-        <div class="gift-box" data-box="2">
-            <div class="box-lid"></div>
-            <div class="box-body">
-                <span>02</span>
-            </div>
-            <div class="ribbon"></div>
-        </div>
-
-        <!-- BOX 3 -->
-        <div class="gift-box" data-box="3">
-            <div class="box-lid"></div>
-            <div class="box-body">
-                <span>03</span>
-            </div>
-            <div class="ribbon"></div>
-        </div>
-
-        <!-- BOX 4 -->
-        <div class="gift-box" data-box="4">
-            <div class="box-lid"></div>
-            <div class="box-body">
-                <span>04</span>
-            </div>
-            <div class="ribbon"></div>
-        </div>
-
-    </div>
-
-    <div class="progress">
-        <span id="progressText">0 / 4 đã mở</span>
-    </div>
-
-</div>
+    </section>
 
 
-<!-- POPUP NỘI DUNG -->
-<div id="modal" class="modal">
+    <!-- =========================================
+         MÀN HÌNH 2 - FOUR BOX
+    ========================================== -->
 
-    <div class="modal-bg"></div>
+    <main id="mainPage" class="main-page">
 
-    <div class="modal-content">
+        <button class="create-btn">
+            CREATE YOUR OWN
+        </button>
 
-        <button id="closeModal" class="close">×</button>
 
-        <!-- BOX 1 -->
-        <div class="gift-content" id="content1">
+        <header class="header">
 
-            <div class="icon">🌷</div>
-
-            <h2>Một bông hoa dành cho bạn</h2>
+            <h1>
+                Four Box 4U
+            </h1>
 
             <p>
-                Có những người không cần xuất hiện quá nhiều,
-                nhưng chỉ cần ở đó thôi cũng khiến một ngày
-                trở nên dễ thương hơn.
+                A small gift is waiting for you.
             </p>
 
-            <div class="flower">
-                🌷
+        </header>
+
+
+        <!-- 4 Ô QUÀ -->
+
+        <section class="box-grid">
+
+
+            <!-- BOX 1 -->
+
+            <button
+                class="gift-card"
+                onclick="openBox(1)"
+            >
+
+                <img
+                    src="assets/flower.png"
+                    alt="Flower"
+                >
+
+            </button>
+
+
+            <!-- BOX 2 -->
+
+            <button
+                class="gift-card"
+                onclick="openBox(2)"
+            >
+
+                <img
+                    src="assets/letters.png"
+                    alt="Letters"
+                >
+
+            </button>
+
+
+            <!-- BOX 3 -->
+
+            <button
+                class="gift-card"
+                onclick="openBox(3)"
+            >
+
+                <img
+                    src="assets/music.png"
+                    alt="Music"
+                >
+
+            </button>
+
+
+            <!-- BOX 4 -->
+
+            <button
+                class="gift-card"
+                onclick="openBox(4)"
+            >
+
+                <img
+                    src="assets/envelope.png"
+                    alt="Envelope"
+                >
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         BOX 1 - HOA
+    ========================================== -->
+
+    <section
+        id="boxPage1"
+        class="gift-page"
+    >
+
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ← Back
+        </button>
+
+
+        <div class="gift-inner">
+
+            <img
+                class="gift-big-image"
+                src="assets/flower.png"
+                alt="Flower"
+            >
+
+            <h2>
+                A little flower for you
+            </h2>
+
+            <div class="divider">
+                ♡
             </div>
+
+            <p>
+                Một bó hoa nhỏ dành cho một người đặc biệt.
+                Mong rằng nó sẽ làm bạn mỉm cười hôm nay.
+            </p>
+
+            <p>
+                Có những món quà không cần quá lớn,
+                chỉ cần được trao bằng cả tấm lòng là đủ.
+            </p>
 
         </div>
 
+    </section>
 
-        <!-- BOX 2 -->
-        <div class="gift-content" id="content2">
 
-            <div class="icon">💌</div>
+    <!-- =========================================
+         BOX 2 - THƯ
+    ========================================== -->
 
-            <h2>Một lá thư nhỏ</h2>
+    <section
+        id="boxPage2"
+        class="gift-page"
+    >
+
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ← Back
+        </button>
+
+
+        <div class="gift-inner letter-page">
+
+            <img
+                class="gift-small-image"
+                src="assets/letters.png"
+                alt="Letters"
+            >
+
+            <h2>
+                Little letters
+            </h2>
+
+            <div class="divider">
+                ♡
+            </div>
+
 
             <div class="letter">
 
-                <p>Gửi bạn,</p>
-
                 <p>
-                    Cảm ơn vì đã xuất hiện trong cuộc sống của mình.
-                    Cảm ơn những cuộc trò chuyện,
-                    những lần quan tâm và cả những khoảnh khắc
-                    rất bình thường nhưng mình vẫn nhớ.
+                    Gửi bạn,
                 </p>
 
                 <p>
-                    Mong rằng sau này khi nhìn lại,
-                    chúng ta vẫn có thể mỉm cười vì đã từng
-                    có những ngày thật đẹp.
+                    Có một vài điều mình muốn nói,
+                    nhưng đôi khi nói trực tiếp lại khó quá.
+                </p>
+
+                <p>
+                    Cảm ơn bạn vì đã xuất hiện,
+                    vì những cuộc trò chuyện,
+                    những lần quan tâm và những khoảnh khắc
+                    tưởng như rất bình thường.
+                </p>
+
+                <p>
+                    Hy vọng những điều nhỏ bé này
+                    có thể làm bạn vui hơn một chút.
+                </p>
+
+                <p>
+                    Và nếu có một ngày bạn cảm thấy mệt,
+                    hãy nhớ rằng bạn vẫn luôn xứng đáng
+                    với những điều dịu dàng.
                 </p>
 
                 <p class="signature">
-                    — Một người rất trân trọng bạn ♡
+                    With love ♡
                 </p>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- BOX 3 -->
-        <div class="gift-content" id="content3">
 
-            <div class="icon">📸</div>
+    <!-- =========================================
+         BOX 3 - MUSIC
+    ========================================== -->
 
-            <h2>Những kỷ niệm</h2>
+    <section
+        id="boxPage3"
+        class="gift-page"
+    >
 
-            <div class="photos">
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ← Back
+        </button>
 
-                <div class="photo">
-                    <img src="assets/photo1.jpg" alt="Memory 1">
-                </div>
 
-                <div class="photo">
-                    <img src="assets/photo2.jpg" alt="Memory 2">
-                </div>
+        <div class="gift-inner">
 
-                <div class="photo">
-                    <img src="assets/photo3.jpg" alt="Memory 3">
-                </div>
+            <img
+                class="gift-big-image"
+                src="assets/music.png"
+                alt="Music"
+            >
 
+            <h2>
+                A song for you
+            </h2>
+
+            <div class="divider">
+                ♡
             </div>
 
-            <p class="photo-note">
-                Mỗi bức ảnh là một câu chuyện nhỏ ♡
-            </p>
-
-        </div>
-
-
-        <!-- BOX 4 -->
-        <div class="gift-content" id="content4">
-
-            <div class="icon">🎵</div>
-
-            <h2>Món quà cuối cùng</h2>
-
             <p>
-                Một bài hát cho những lúc bạn nhớ đến mình.
+                Một bài hát nhỏ dành riêng cho bạn.
             </p>
+
+
+            <!-- MUSIC PLAYER -->
 
             <div class="music-player">
 
-                <div class="disc">
+                <div
+                    id="musicDisc"
+                    class="music-disc"
+                >
                     ♪
                 </div>
 
+
                 <div class="music-info">
-                    <strong>Our Little Song</strong>
-                    <span>for you ♡</span>
+
+                    <strong>
+                        A Little Song
+                    </strong>
+
+                    <span>
+                        Four Box 4U ♡
+                    </span>
+
                 </div>
 
-                <button id="musicBtn">
+
+                <button
+                    id="musicButton"
+                    class="music-button"
+                >
                     ▶
                 </button>
 
             </div>
 
-            <p class="final-message">
-                Hy vọng khi nghe bài hát này,<br>
-                bạn sẽ nhớ rằng có một người<br>
-                luôn mong bạn vui.
+
+            <p class="music-note">
+                Turn up your volume and enjoy the song ♡
             </p>
 
         </div>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- AUDIO -->
-<audio id="music" loop>
-    <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
+    <!-- =========================================
+         BOX 4 - LÁ THƯ CUỐI
+    ========================================== -->
+
+    <section
+        id="boxPage4"
+        class="gift-page"
+    >
+
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ← Back
+        </button>
 
 
-<script src="script.js"></script>
+        <div class="gift-inner">
+
+            <img
+                class="gift-big-image"
+                src="assets/envelope.png"
+                alt="Envelope"
+            >
+
+            <h2>
+                One last letter
+            </h2>
+
+            <div class="divider">
+                ♡
+            </div>
+
+
+            <div class="final-letter">
+
+                <p>
+                    Nếu bạn đã mở đến chiếc hộp cuối cùng...
+                </p>
+
+                <p>
+                    thì chắc là bạn đã đi hết cả bốn món quà
+                    mình chuẩn bị rồi.
+                </p>
+
+                <p>
+                    Mình không biết sau này mọi thứ sẽ thay đổi
+                    như thế nào, nhưng mình mong những khoảnh khắc
+                    hôm nay sẽ luôn là một kỷ niệm đẹp.
+                </p>
+
+                <p>
+                    Cảm ơn bạn đã ở đây.
+                </p>
+
+                <p class="big-love">
+                    You are special ♡
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         AUDIO
+    ========================================== -->
+
+    <audio
+        id="music"
+        loop
+        preload="auto"
+    >
+
+        <source
+            src="assets/music.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
