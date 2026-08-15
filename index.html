@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>FOURBOX 4U</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- MÀN HÌNH MỞ ĐẦU -->
+<div id="welcome" class="screen active">
+    <div class="stars"></div>
+
+    <div class="welcome-content">
+        <div class="small-title">A LITTLE GIFT FOR YOU</div>
+
+        <h1>FOUR<span>BOX</span></h1>
+
+        <p>
+            Có một chút gì đó<br>
+            mình muốn dành riêng cho bạn...
+        </p>
+
+        <button id="startBtn" class="main-btn">
+            MỞ QUÀ
+        </button>
+    </div>
+</div>
+
+
+<!-- MÀN HÌNH 4 HỘP -->
+<div id="boxesScreen" class="screen">
+
+    <div class="top-text">
+        <span>FOR YOU</span>
+        <h2>4 món quà nhỏ</h2>
+        <p>Hãy mở từng chiếc một nhé ♡</p>
+    </div>
+
+    <div class="boxes">
+
+        <!-- BOX 1 -->
+        <div class="gift-box" data-box="1">
+            <div class="box-lid"></div>
+            <div class="box-body">
+                <span>01</span>
+            </div>
+            <div class="ribbon"></div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="gift-box" data-box="2">
+            <div class="box-lid"></div>
+            <div class="box-body">
+                <span>02</span>
+            </div>
+            <div class="ribbon"></div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="gift-box" data-box="3">
+            <div class="box-lid"></div>
+            <div class="box-body">
+                <span>03</span>
+            </div>
+            <div class="ribbon"></div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="gift-box" data-box="4">
+            <div class="box-lid"></div>
+            <div class="box-body">
+                <span>04</span>
+            </div>
+            <div class="ribbon"></div>
+        </div>
+
+    </div>
+
+    <div class="progress">
+        <span id="progressText">0 / 4 đã mở</span>
+    </div>
+
+</div>
+
+
+<!-- POPUP NỘI DUNG -->
+<div id="modal" class="modal">
+
+    <div class="modal-bg"></div>
+
+    <div class="modal-content">
+
+        <button id="closeModal" class="close">×</button>
+
+        <!-- BOX 1 -->
+        <div class="gift-content" id="content1">
+
+            <div class="icon">🌷</div>
+
+            <h2>Một bông hoa dành cho bạn</h2>
+
+            <p>
+                Có những người không cần xuất hiện quá nhiều,
+                nhưng chỉ cần ở đó thôi cũng khiến một ngày
+                trở nên dễ thương hơn.
+            </p>
+
+            <div class="flower">
+                🌷
+            </div>
+
+        </div>
+
+
+        <!-- BOX 2 -->
+        <div class="gift-content" id="content2">
+
+            <div class="icon">💌</div>
+
+            <h2>Một lá thư nhỏ</h2>
+
+            <div class="letter">
+
+                <p>Gửi bạn,</p>
+
+                <p>
+                    Cảm ơn vì đã xuất hiện trong cuộc sống của mình.
+                    Cảm ơn những cuộc trò chuyện,
+                    những lần quan tâm và cả những khoảnh khắc
+                    rất bình thường nhưng mình vẫn nhớ.
+                </p>
+
+                <p>
+                    Mong rằng sau này khi nhìn lại,
+                    chúng ta vẫn có thể mỉm cười vì đã từng
+                    có những ngày thật đẹp.
+                </p>
+
+                <p class="signature">
+                    — Một người rất trân trọng bạn ♡
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOX 3 -->
+        <div class="gift-content" id="content3">
+
+            <div class="icon">📸</div>
+
+            <h2>Những kỷ niệm</h2>
+
+            <div class="photos">
+
+                <div class="photo">
+                    <img src="assets/photo1.jpg" alt="Memory 1">
+                </div>
+
+                <div class="photo">
+                    <img src="assets/photo2.jpg" alt="Memory 2">
+                </div>
+
+                <div class="photo">
+                    <img src="assets/photo3.jpg" alt="Memory 3">
+                </div>
+
+            </div>
+
+            <p class="photo-note">
+                Mỗi bức ảnh là một câu chuyện nhỏ ♡
+            </p>
+
+        </div>
+
+
+        <!-- BOX 4 -->
+        <div class="gift-content" id="content4">
+
+            <div class="icon">🎵</div>
+
+            <h2>Món quà cuối cùng</h2>
+
+            <p>
+                Một bài hát cho những lúc bạn nhớ đến mình.
+            </p>
+
+            <div class="music-player">
+
+                <div class="disc">
+                    ♪
+                </div>
+
+                <div class="music-info">
+                    <strong>Our Little Song</strong>
+                    <span>for you ♡</span>
+                </div>
+
+                <button id="musicBtn">
+                    ▶
+                </button>
+
+            </div>
+
+            <p class="final-message">
+                Hy vọng khi nghe bài hát này,<br>
+                bạn sẽ nhớ rằng có một người<br>
+                luôn mong bạn vui.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- AUDIO -->
+<audio id="music" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
