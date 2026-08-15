@@ -1,499 +1,178 @@
-/* =====================================================
-   ELEMENT
-===================================================== */
+/* ==================================================
+   ELEMENTS
+================================================== */
 
-const intro =
-    document.getElementById("intro");
+const intro = document.getElementById("intro");
+const home = document.getElementById("home");
+const okayBtn = document.getElementById("okayBtn");
 
-const home =
-    document.getElementById("home");
+const pages = document.querySelectorAll(".content-page");
 
-const okayBtn =
-    document.getElementById("okayBtn");
-
-const giftBoxes =
-    document.querySelectorAll(".gift-box");
-
-const pages =
-    document.querySelectorAll(".page");
-
-const backButtons =
-    document.querySelectorAll("[data-back]");
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const disc = document.getElementById("disc");
 
 
-/* =====================================================
-   MUSIC
-===================================================== */
+/* ==================================================
+   OKAY
+================================================== */
 
-const audio =
-    document.getElementById("audio");
+okayBtn.addEventListener("click", function () {
 
-const playBtn =
-    document.getElementById("playBtn");
+    intro.classList.add("hide");
 
-const vinyl =
-    document.getElementById("vinyl");
+    setTimeout(function () {
 
-const progress =
-    document.getElementById("progress");
+        intro.style.display = "none";
 
-const currentTime =
-    document.getElementById("currentTime");
+        home.classList.add("show");
 
-const duration =
-    document.getElementById("duration");
+    }, 500);
+
+});
 
 
-/* =====================================================
-   BIẾN CHUYỂN CẢNH
-===================================================== */
+/* ==================================================
+   OPEN PAGE
+================================================== */
 
-let currentPage = null;
+function openPage(pageId) {
 
-let isChangingPage = false;
+    /*
+       Đóng tất cả page trước
+    */
 
+    pages.forEach(function (page) {
 
-/* Thời gian fade */
+        page.classList.remove("active");
 
-const TRANSITION_TIME = 450;
-
-
-/* =====================================================
-   FORMAT TIME
-===================================================== */
-
-function formatTime(seconds) {
-
-    if (!Number.isFinite(seconds)) {
-
-        return "0:00";
-
-    }
+    });
 
 
-    const minutes =
-        Math.floor(seconds / 60);
+    /*
+       Ẩn HOME
+    */
+
+    home.classList.remove("show");
 
 
-    const secondsLeft =
-        Math.floor(seconds % 60)
-            .toString()
-            .padStart(2, "0");
+    /*
+       Mở page được chọn
+    */
 
-
-    return (
-        minutes +
-        ":" +
-        secondsLeft
-    );
-
-}
-
-
-/* =====================================================
-   INTRO → HOME
-===================================================== */
-
-okayBtn.addEventListener(
-    "click",
-    function () {
-
-        if (isChangingPage) {
-            return;
-        }
-
-
-        isChangingPage = true;
-
-
-        /* Intro biến mất */
-
-        intro.classList.add("hide");
-
-
-        /* Đợi intro biến mất hoàn toàn */
-
-        setTimeout(
-            function () {
-
-                intro.style.display =
-                    "none";
-
-
-                home.style.display =
-                    "block";
-
-
-                home.classList.remove(
-                    "home-hidden"
-                );
-
-
-                isChangingPage = false;
-
-            },
-            600
-        );
-
-    }
-);
-
-
-/* =====================================================
-   HIỆN PAGE
-===================================================== */
-
-function showPage(pageId) {
-
-    if (isChangingPage) {
-        return;
-    }
-
-
-    const newPage =
+    const page =
         document.getElementById(pageId);
 
+    if (!page) return;
 
-    if (!newPage) {
-        return;
-    }
+    page.classList.add("active");
 
-
-    if (currentPage === newPage) {
-        return;
-    }
-
-
-    isChangingPage = true;
-
-
-    /* -----------------------------------------
-       BƯỚC 1
-       Làm Home biến mất
-    ----------------------------------------- */
-
-    home.classList.add(
-        "home-hidden"
-    );
-
-
-    /* -----------------------------------------
-       BƯỚC 2
-       Nếu đang ở page khác
-       thì làm page đó biến mất
-    ----------------------------------------- */
-
-    if (currentPage) {
-
-        currentPage.classList.remove(
-            "active"
-        );
-
-    }
-
-
-    /* -----------------------------------------
-       BƯỚC 3
-       Đợi cảnh cũ biến mất hoàn toàn
-    ----------------------------------------- */
-
-    setTimeout(
-        function () {
-
-
-            /* Đảm bảo tất cả page tắt */
-
-            pages.forEach(
-                function (page) {
-
-                    page.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-
-            /* Hiện page mới */
-
-            newPage.classList.add(
-                "active"
-            );
-
-
-            currentPage =
-                newPage;
-
-
-            /* Cuộn lên đầu */
-
-            newPage.scrollTop = 0;
-
-
-            /* Cho phép chuyển tiếp */
-
-            setTimeout(
-                function () {
-
-                    isChangingPage = false;
-
-                },
-                TRANSITION_TIME
-            );
-
-
-        },
-        TRANSITION_TIME
-    );
-
+    page.scrollTop = 0;
 }
 
 
-/* =====================================================
-   MỞ 4 BOX
-===================================================== */
-
-giftBoxes.forEach(
-    function (box) {
-
-        box.addEventListener(
-            "click",
-            function () {
-
-                const pageId =
-                    box.dataset.page;
-
-
-                showPage(pageId);
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   BACK → HOME
-===================================================== */
+/* ==================================================
+   HOME
+================================================== */
 
 function goHome() {
 
-    if (isChangingPage) {
-        return;
-    }
+    /*
+       Dừng nhạc
+    */
 
-
-    isChangingPage = true;
-
-
-    /* -----------------------------------------
-       DỪNG NHẠC
-    ----------------------------------------- */
-
-    if (
-        audio &&
-        !audio.paused
-    ) {
+    if (audio) {
 
         audio.pause();
 
+        audio.currentTime = 0;
+
     }
 
+
+    /*
+       Reset nút
+    */
 
     if (playBtn) {
 
-        playBtn.textContent =
-            "▶";
+        playBtn.innerHTML = "▶";
+
+        playBtn.classList.remove("playing");
 
     }
 
 
-    if (vinyl) {
+    /*
+       Reset đĩa
+    */
 
-        vinyl.classList.remove(
-            "playing"
-        );
+    if (disc) {
 
-    }
-
-
-    /* -----------------------------------------
-       PAGE CŨ BIẾN MẤT
-    ----------------------------------------- */
-
-    if (currentPage) {
-
-        currentPage.classList.remove(
-            "active"
-        );
+        disc.classList.remove("playing");
 
     }
 
 
-    /* -----------------------------------------
-       Đợi cảnh cũ biến mất
-    ----------------------------------------- */
+    /*
+       Đóng page
+    */
 
-    setTimeout(
-        function () {
+    pages.forEach(function (page) {
 
+        page.classList.remove("active");
 
-            currentPage = null;
-
-
-            /* Hiện Home */
-
-            home.classList.remove(
-                "home-hidden"
-            );
+    });
 
 
-            home.style.display =
-                "block";
+    /*
+       Mở HOME
+    */
 
-
-            /* Cuộn Home lên đầu */
-
-            home.scrollTop = 0;
-
-
-            setTimeout(
-                function () {
-
-                    isChangingPage =
-                        false;
-
-                },
-                TRANSITION_TIME
-            );
-
-
-        },
-        TRANSITION_TIME
-    );
+    home.classList.add("show");
 
 }
 
 
-/* =====================================================
-   BACK BUTTON
-===================================================== */
-
-backButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            goHome
-        );
-
-    }
-);
-
-
-/* =====================================================
-   MUSIC - METADATA
-===================================================== */
-
-audio.addEventListener(
-    "loadedmetadata",
-    function () {
-
-        duration.textContent =
-            formatTime(
-                audio.duration
-            );
-
-    }
-);
-
-
-/* =====================================================
-   MUSIC - PLAY / PAUSE
-===================================================== */
+/* ==================================================
+   MUSIC PLAY / PAUSE
+================================================== */
 
 playBtn.addEventListener(
     "click",
     async function () {
 
-        try {
+        /*
+           Nếu đang pause
+        */
 
+        if (audio.paused) {
 
-            /* -------------------------------
-               ĐANG DỪNG → PHÁT
-            ------------------------------- */
-
-            if (audio.paused) {
-
-
-                /*
-                 * Nếu muốn bắt đầu từ giây 41:
-                 *
-                 * audio.currentTime = 41;
-                 *
-                 * Nếu muốn phát từ đầu:
-                 * giữ nguyên như hiện tại.
-                 */
-
-
-                if (
-                    audio.currentTime === 0
-                ) {
-
-                    audio.currentTime = 41;
-
-                }
-
+            try {
 
                 await audio.play();
 
+            } catch (error) {
 
-                playBtn.textContent =
-                    "Ⅱ";
+                console.error(error);
 
-
-                vinyl.classList.add(
-                    "playing"
-                );
-
-
-            }
-
-            /* -------------------------------
-               ĐANG PHÁT → DỪNG
-            ------------------------------- */
-
-            else {
-
-                audio.pause();
-
-
-                playBtn.textContent =
-                    "▶";
-
-
-                vinyl.classList.remove(
-                    "playing"
+                alert(
+                    "Không phát được MP3!\n\n" +
+                    "Hãy kiểm tra file:\n" +
+                    "music/song.mp3"
                 );
 
             }
-
 
         }
 
-        catch (error) {
+        /*
+           Nếu đang phát
+        */
 
-            console.error(
-                "Audio error:",
-                error
-            );
+        else {
 
-
-            alert(
-                "Không thể phát nhạc. " +
-                "Hãy kiểm tra file music.mp3."
-            );
+            audio.pause();
 
         }
 
@@ -501,93 +180,82 @@ playBtn.addEventListener(
 );
 
 
-/* =====================================================
-   MUSIC - TIME
-===================================================== */
+/* ==================================================
+   AUDIO PLAY
+================================================== */
 
 audio.addEventListener(
-    "timeupdate",
+    "play",
     function () {
 
-        if (!audio.duration) {
-            return;
-        }
+        playBtn.innerHTML = "❚❚";
 
+        playBtn.classList.add("playing");
 
-        const percent =
-            (
-                audio.currentTime /
-                audio.duration
-            ) * 100;
-
-
-        progress.value =
-            percent;
-
-
-        currentTime.textContent =
-            formatTime(
-                audio.currentTime
-            );
+        disc.classList.add("playing");
 
     }
 );
 
 
-/* =====================================================
-   MUSIC - SEEK
-===================================================== */
+/* ==================================================
+   AUDIO PAUSE
+================================================== */
 
-progress.addEventListener(
-    "input",
+audio.addEventListener(
+    "pause",
     function () {
 
-        if (!audio.duration) {
-            return;
-        }
+        playBtn.innerHTML = "▶";
 
+        playBtn.classList.remove("playing");
 
-        audio.currentTime =
-            (
-                progress.value / 100
-            ) * audio.duration;
+        disc.classList.remove("playing");
 
     }
 );
 
 
-/* =====================================================
-   MUSIC - END
-===================================================== */
+/* ==================================================
+   AUDIO END
+================================================== */
 
 audio.addEventListener(
     "ended",
     function () {
 
-        playBtn.textContent =
-            "▶";
+        playBtn.innerHTML = "▶";
 
+        playBtn.classList.remove("playing");
 
-        vinyl.classList.remove(
-            "playing"
-        );
-
-
-        progress.value = 0;
-
-
-        currentTime.textContent =
-            "0:00";
+        disc.classList.remove("playing");
 
     }
 );
 
 
-/* =====================================================
-   KHÔNG TỰ PHÁT NHẠC
-===================================================== */
+/* ==================================================
+   ESC = BACK
+================================================== */
 
-/*
-   Nhạc chỉ chạy khi người dùng
-   bấm nút PLAY.
-*/
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            const opened =
+                document.querySelector(
+                    ".content-page.active"
+                );
+
+            if (opened) {
+
+                goHome();
+
+            }
+
+        }
+
+    }
+);
