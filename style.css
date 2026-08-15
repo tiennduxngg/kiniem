@@ -12,92 +12,89 @@ body {
 
 body {
     overflow: hidden;
-    color: #40383b;
+
     background: #fff5f7;
+
+    color: #403a3d;
+
     font-family: Arial, sans-serif;
 }
 
-
-/* =====================================================
-   PAGE CHUNG
-===================================================== */
-
-.page,
-.gift-page {
-    background:
-        linear-gradient(
-            180deg,
-            #fffafa,
-            #fff4f6
-        );
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 
-/* =====================================================
-   VOLUME
-===================================================== */
+/* ==================================================
+   SCREEN
+================================================== */
 
-.page {
+.screen {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100dvh;
-
-    transition:
-        transform .7s cubic-bezier(.77,0,.18,1);
 }
 
-.volume-screen {
-    z-index: 50;
+
+/* ==================================================
+   INTRO
+================================================== */
+
+.intro-screen {
+    z-index: 1000;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.45),
+            rgba(255,255,255,.45)
+        ),
+        #f7f4ee;
+
+    transition: .6s ease;
 }
 
-.volume-screen.hide {
+.intro-screen.hide {
     transform: translateX(-100%);
 }
 
-.volume-paper {
+.intro-box {
     width: calc(100% - 100px);
     max-width: 730px;
-    height: 78dvh;
 
-    border:
-        1px solid rgba(215,101,133,.2);
+    height: 78dvh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background:
-        rgba(255,255,255,.18);
-}
+    flex-direction: column;
 
-.volume-content {
     text-align: center;
 }
 
-.volume-content h1 {
-    color: #d76585;
+.intro-box h1 {
+    color: #d56585;
 
-    font-family:
-        Georgia,
-        serif;
+    font-family: Georgia, serif;
 
     font-size:
-        clamp(45px,10vw,80px);
+        clamp(45px, 10vw, 78px);
 
     font-style: italic;
 
     line-height: 1;
 
-    text-shadow:
-        3px 3px #fff;
+    text-shadow: 3px 3px white;
 }
 
-.volume-content p {
+.intro-box p {
     margin-top: 40px;
 
     font-family:
@@ -110,72 +107,87 @@ body {
     line-height: 1.8;
 }
 
-.okay-btn {
+#okayBtn {
     width: 215px;
     height: 70px;
 
-    margin-top: 55px;
+    margin-top: 50px;
 
-    border:
-        5px solid #d96d8b;
+    border: 5px solid #d56585;
 
     border-radius: 50px;
 
-    background: #fffaf5;
+    background: #fffaf7;
 
     color: #d56585;
 
-    font-size: 21px;
+    font-size: 20px;
+
     font-weight: bold;
+
+    cursor: pointer;
+}
+
+#okayBtn:active {
+    transform: scale(.94);
 }
 
 
-/* =====================================================
-   FOUR BOX
-===================================================== */
+/* ==================================================
+   HOME
+================================================== */
 
-.main-page {
-    z-index: 5;
+.home-screen {
+    z-index: 100;
 
     overflow-y: auto;
 
     padding:
-        120px 20px 80px;
+        105px 20px 80px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.48),
+            rgba(255,255,255,.48)
+        ),
+        #f7f4ee;
 
     transform: translateX(100%);
+
+    transition: .6s ease;
 }
 
-.main-page.show {
+.home-screen.show {
     transform: translateX(0);
 }
 
-.main-content {
+.home-container {
     width: 100%;
-    max-width: 610px;
+    max-width: 650px;
+
     margin: auto;
 }
 
-.header {
+.home-title {
     text-align: center;
 }
 
-.header h1 {
-    color: #d76585;
+.home-title h1 {
+    color: #d56585;
 
-    font-family:
-        Georgia,
-        serif;
+    font-family: Georgia, serif;
 
     font-size:
-        clamp(45px,11vw,75px);
+        clamp(48px, 11vw, 78px);
 
     font-style: italic;
 
-    text-shadow:
-        2px 2px #fff;
+    line-height: 1;
+
+    text-shadow: 3px 3px white;
 }
 
-.header p {
+.home-title p {
     margin-top: 15px;
 
     font-family:
@@ -186,24 +198,30 @@ body {
     font-size: 18px;
 }
 
-.box-grid {
-    margin-top: 85px;
+
+/* ==================================================
+   BOXES
+================================================== */
+
+.boxes {
+    width: 100%;
+
+    margin-top: 80px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, 1fr);
 
-    gap: 65px 28px;
+    gap: 60px 28px;
 }
 
-.gift-card {
+.box {
     width: 100%;
 
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
 
-    border:
-        5px solid #dc6d8e;
+    border: 5px solid #d56585;
 
     border-radius: 45px;
 
@@ -214,32 +232,34 @@ body {
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
+    padding: 20px;
 
     cursor: pointer;
+
+    transition: .2s ease;
 }
 
-.gift-card:active {
-    transform: scale(.93);
-}
-
-.gift-card img {
-    width: 76%;
-    height: 76%;
+.box img {
+    width: 78%;
+    height: 78%;
 
     object-fit: contain;
 }
 
+.box:active {
+    transform: scale(.93);
+}
 
-/* =====================================================
-   GIFT PAGE
-===================================================== */
 
-.gift-page {
+/* ==================================================
+   CONTENT PAGE
+================================================== */
+
+.content-page {
     position: fixed;
     inset: 0;
 
-    z-index: 100;
+    z-index: 500;
 
     display: none;
 
@@ -247,119 +267,102 @@ body {
     height: 100dvh;
 
     overflow-y: auto;
+    overflow-x: hidden;
 
-    padding:
-        95px 20px 70px;
+    background: #f7f4ee;
 }
 
-.gift-page.show {
+.content-page.active {
     display: block;
-
-    animation:
-        pageIn .35s ease;
-}
-
-@keyframes pageIn {
-
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 
-/* =====================================================
+/* ==================================================
    BACK
-===================================================== */
+================================================== */
 
-.back-btn,
-.little-back {
-
+.back {
     position: fixed;
 
     top: 25px;
     left: 30px;
 
-    z-index: 999;
+    z-index: 9999;
 
     width: 195px;
-    height: 65px;
+    height: 62px;
 
-    border:
-        4px solid #d96d8b;
+    border: 4px solid #d56585;
 
     border-radius: 50px;
 
-    background: #fffafa;
+    background: #fffaf8;
 
-    color: #c85f7e;
+    color: #c75d7c;
 
-    font-size: 20px;
+    font-size: 18px;
 
     font-weight: bold;
 
     cursor: pointer;
 }
 
-.back-btn:active,
-.little-back:active {
+.back:active {
     transform: scale(.94);
 }
 
 
-/* =====================================================
-   SIMPLE BOX
-===================================================== */
+/* ==================================================
+   SIMPLE PAGE
+================================================== */
 
-.simple-gift {
-    text-align: center;
-}
-
-.simple-content {
+.simple-page {
     width: 100%;
     max-width: 650px;
 
     margin: auto;
 
     padding:
-        60px 20px;
+        120px 20px 80px;
+
+    text-align: center;
 }
 
-.simple-image {
-    width: 240px;
-    height: 240px;
+.big-image {
+    display: block;
+
+    width: 230px;
+    height: 230px;
+
+    max-width: 75%;
+
+    margin: auto;
 
     object-fit: contain;
 }
 
-.simple-content h2 {
-    margin-top: 20px;
+.simple-page h2 {
+    margin-top: 30px;
 
-    color: #d76585;
+    color: #d56585;
 
-    font-family:
-        Georgia,
-        serif;
+    font-family: Georgia, serif;
 
-    font-size: 45px;
+    font-size:
+        clamp(38px, 9vw, 58px);
 
     font-style: italic;
 }
 
-.heart {
+.big-heart {
     margin: 20px;
 
-    color: #d76585;
+    color: #d56585;
 
     font-size: 45px;
 }
 
-.simple-content > p {
+.simple-page > p {
     font-family:
         "Comic Sans MS",
         "Segoe Print",
@@ -370,21 +373,25 @@ body {
     line-height: 1.8;
 }
 
-.letter {
+
+/* ==================================================
+   LETTER
+================================================== */
+
+.letter-box {
     margin-top: 35px;
 
     padding: 30px;
 
-    text-align: left;
-
     border-radius: 20px;
 
-    background:
-        rgba(255,255,255,.7);
+    background: rgba(255,255,255,.8);
+
+    text-align: left;
 }
 
-.letter p {
-    margin-bottom: 20px;
+.letter-box p {
+    margin-bottom: 18px;
 
     font-family:
         "Comic Sans MS",
@@ -394,119 +401,367 @@ body {
     line-height: 1.8;
 }
 
-.signature {
-    color: #d76585;
+.letter-box .signature {
+    color: #d56585;
+
     text-align: right;
+
+    margin-bottom: 0;
 }
 
 
-/* =====================================================
+/* ==================================================
+   LITTLE PAGE
+================================================== */
+
+.little-page {
+    background: #f3f1ec;
+}
+
+.little-container {
+    width: 100%;
+
+    max-width: 720px;
+
+    margin: auto;
+
+    padding:
+        115px 16px 80px;
+}
+
+
+/* ==================================================
+   LITTLE CARD
+================================================== */
+
+.little-card {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 280px;
+
+    margin-bottom: 45px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 22px
+        rgba(70,55,60,.12);
+}
+
+
+/* CARD 1 */
+
+.card-white {
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #fffafa 0,
+            #fffafa 34px,
+            #efdee3 35px,
+            #fffafa 36px
+        );
+
+    transform: rotate(-.7deg);
+}
+
+
+/* CARD 2 */
+
+.card-pink-dots {
+    background-color: #f7dce5;
+
+    background-image:
+        radial-gradient(
+            #e5b6c5 1.7px,
+            transparent 1.7px
+        );
+
+    background-size: 19px 19px;
+
+    border-left:
+        7px solid #d56585;
+
+    transform: rotate(.6deg);
+}
+
+
+/* CARD 3 */
+
+.card-pink-lines {
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #f7dce4 0,
+            #f7dce4 36px,
+            #eac4cd 37px,
+            #f7dce4 38px
+        );
+
+    transform: rotate(-.5deg);
+}
+
+
+/* TAB */
+
+.paper-tab {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 38px;
+    height: 32px;
+
+    border-radius:
+        0 0 10px 10px;
+
+    background: #d56585;
+}
+
+
+/* ==================================================
+   LITTLE PHOTO
+================================================== */
+
+.little-photo {
+    width: 150px;
+
+    flex: 0 0 150px;
+
+    padding:
+        8px 8px 25px;
+
+    background: #fff;
+
+    box-shadow:
+        0 8px 16px
+        rgba(50,40,45,.18);
+
+    transform: rotate(-4deg);
+}
+
+.little-photo.rotate-left {
+    transform: rotate(-6deg);
+}
+
+.little-photo.rotate-right {
+    transform: rotate(5deg);
+}
+
+.little-photo img {
+    display: block;
+
+    width: 100%;
+    height: 145px;
+
+    object-fit: cover;
+}
+
+
+/* ==================================================
+   LITTLE TEXT
+================================================== */
+
+.little-text {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.little-text small {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #c75d7c;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.little-text h3 {
+    margin-bottom: 10px;
+
+    color: #d56585;
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    line-height: 1.2;
+}
+
+.little-text p {
+    color: #51494c;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* ==================================================
+   LITTLE END
+================================================== */
+
+.little-end {
+    padding:
+        15px 20px 100px;
+
+    text-align: center;
+}
+
+.little-end h2 {
+    color: #d56585;
+
+    font-family: Georgia, serif;
+
+    font-size: 40px;
+
+    font-style: italic;
+}
+
+.little-end p {
+    margin-top: 15px;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* ==================================================
    MUSIC PAGE
-===================================================== */
+================================================== */
 
 .music-page {
-    text-align: center;
-
-    background:
-        #fff5f7;
+    background: #fff5f7;
 }
 
-.music-inner {
+.music-container {
     width: 100%;
     max-width: 650px;
 
     margin: auto;
 
     padding:
-        50px 20px 80px;
+        110px 20px 80px;
+
+    text-align: center;
 }
 
-.music-image-box {
-    width: 470px;
-    max-width: 90%;
+.music-cover {
+    width: min(430px, 85vw);
 
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
 
     margin: auto;
 
-    border:
-        1px solid #d5cdcd;
+    overflow: hidden;
 
-    background: #fff;
+    background: white;
+
+    border: 1px solid #ddd;
 }
 
-.music-image-box img {
+.music-cover img {
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 }
 
-.music-inner h2 {
-    margin-top: 45px;
+.music-container h2 {
+    margin-top: 40px;
 
-    color: #d76585;
+    color: #d56585;
 
-    font-family:
-        Georgia,
-        serif;
+    font-family: Georgia, serif;
 
     font-size:
-        clamp(40px,9vw,60px);
+        clamp(40px, 9vw, 58px);
 
     font-style: italic;
 }
 
 .music-heart {
-    margin: 15px;
+    margin: 12px;
 
-    color: #d76585;
+    color: #d56585;
 
-    font-size: 45px;
+    font-size: 42px;
 }
 
-.music-description {
-    font-family:
-        Georgia,
-        serif;
+.music-container > p {
+    font-family: Georgia, serif;
 
-    font-size: 18px;
+    font-size: 17px;
 
     font-style: italic;
 }
 
 
-/* =====================================================
-   MP3
-===================================================== */
+/* ==================================================
+   PLAYER
+================================================== */
 
-.mp3-player {
+.player {
     width: 100%;
 
-    margin-top: 50px;
+    margin-top: 40px;
 
-    padding: 17px 20px;
+    padding: 14px 16px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 18px;
+    gap: 14px;
 
     border-radius: 35px;
 
     background: #fff;
 
     box-shadow:
-        0 10px 30px
-        rgba(150,70,100,.12);
+        0 10px 25px
+        rgba(100,50,70,.12);
 }
 
-.mp3-disc {
-    width: 85px;
-    height: 85px;
+.disc {
+    width: 72px;
+    height: 72px;
 
-    flex-shrink: 0;
+    flex: 0 0 72px;
 
     display: flex;
 
@@ -515,15 +770,15 @@ body {
 
     border-radius: 50%;
 
-    color: white;
+    color: #fff;
 
-    font-size: 28px;
+    font-size: 25px;
 
     background:
         radial-gradient(
             circle,
-            #d96889 0 23%,
-            #4e303a 24% 100%
+            #e07896 0 20%,
+            #51343e 21% 100%
         );
 
     animation:
@@ -532,22 +787,17 @@ body {
     animation-play-state: paused;
 }
 
-.mp3-disc.playing {
+.disc.playing {
     animation-play-state: running;
 }
 
 @keyframes spin {
-
-    from {
-        transform: rotate(0);
-    }
-
     to {
         transform: rotate(360deg);
     }
 }
 
-.mp3-info {
+.song-info {
     flex: 1;
 
     min-width: 0;
@@ -555,638 +805,199 @@ body {
     text-align: left;
 }
 
-.mp3-info strong {
+.song-info strong {
     display: block;
 
-    font-size: 20px;
+    overflow: hidden;
+
+    font-size: 17px;
 
     white-space: nowrap;
-
-    overflow: hidden;
 
     text-overflow: ellipsis;
 }
 
-.mp3-info span {
+.song-info span {
     display: block;
 
-    margin-top: 7px;
+    margin-top: 6px;
 
-    color: #9b7c85;
+    color: #9b7e86;
+
+    font-size: 12px;
 }
 
-.mp3-button {
-    width: 65px;
-    height: 65px;
+.play-btn {
+    width: 60px;
+    height: 60px;
 
-    flex-shrink: 0;
+    flex: 0 0 60px;
 
     border: none;
 
     border-radius: 50%;
 
-    background: #d96889;
+    background: #d56585;
 
-    color: white;
+    color: #fff;
 
-    font-size: 21px;
+    font-size: 19px;
 
     cursor: pointer;
 }
 
-.mp3-button:active {
+.play-btn:active {
     transform: scale(.88);
 }
 
-.mp3-button.playing {
-    background: #bd5475;
+.play-btn.playing {
+    background: #b95070;
 }
 
-.music-note {
-    margin-top: 18px;
+.player-note {
+    margin-top: 15px !important;
 
-    color: #9b7c85;
+    color: #9b7e86;
 
-    font-size: 13px;
-}
+    font-family: Arial, sans-serif !important;
 
+    font-size: 12px !important;
 
-/* =====================================================
-   LITTLE BOX
-===================================================== */
-
-.little-page {
-
-    background:
-        #f5f4ef;
-
-    padding:
-        105px 18px 70px;
-}
-
-.little-container {
-
-    width: 100%;
-
-    max-width: 760px;
-
-    margin: auto;
+    font-style: normal !important;
 }
 
 
-/* =====================================================
-   4 TỜ NOTE
-===================================================== */
-
-.little-note {
-
-    position: relative;
-
-    width: 100%;
-
-    min-height: 380px;
-
-    margin-bottom: 65px;
-
-    padding: 42px 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 35px;
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 12px 25px
-        rgba(80,60,70,.13);
-
-    overflow: hidden;
-}
-
-
-/* =====================================================
-   NOTE 1
-===================================================== */
-
-.note-one {
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #fff9fa 0,
-            #fff9fa 45px,
-            #f1dfe4 46px,
-            #fff9fa 47px
-        );
-
-    border:
-        1px solid #f1ccd6;
-
-    transform:
-        rotate(-1deg);
-}
-
-
-/* =====================================================
-   NOTE 2
-===================================================== */
-
-.note-two {
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(205,95,130,.15) 2px,
-            transparent 3px
-        ),
-
-        #f8dfe7;
-
-    background-size:
-        25px 25px;
-
-    border-left:
-        10px solid #d75f82;
-
-    transform:
-        rotate(.7deg);
-}
-
-
-/* =====================================================
-   NOTE 3
-===================================================== */
-
-.note-three {
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #f9dbe4 0,
-            #f9dbe4 50px,
-            #edc4ce 51px,
-            #f9dbe4 52px
-        );
-
-    border:
-        1px solid #eabdc8;
-
-    transform:
-        rotate(-.6deg);
-}
-
-
-/* =====================================================
-   NOTE 4
-===================================================== */
-
-.note-four {
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #fff9fa 0,
-            #fff9fa 45px,
-            #f1dfe4 46px,
-            #fff9fa 47px
-        );
-
-    border:
-        1px solid #f1ccd6;
-
-    transform:
-        rotate(.8deg);
-}
-
-
-/* =====================================================
-   POLAROID
-===================================================== */
-
-.polaroid {
-
-    flex:
-        0 0 220px;
-
-    width: 220px;
-
-    padding:
-        12px 12px 35px;
-
-    background:
-        white;
-
-    border-radius:
-        7px;
-
-    box-shadow:
-        0 12px 20px
-        rgba(50,40,50,.18);
-
-    transform:
-        rotate(-5deg);
-}
-
-.polaroid.rotate-left {
-    transform:
-        rotate(-7deg);
-}
-
-.polaroid.rotate-right {
-    transform:
-        rotate(6deg);
-}
-
-.polaroid img {
-
-    width: 100%;
-    height: 220px;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* =====================================================
-   NOTE TEXT
-===================================================== */
-
-.note-content {
-
-    flex: 1;
-
-    min-width: 0;
-}
-
-.note-content p {
-
-    margin-bottom: 15px;
-
-    color:
-        #403b3d;
-
-    font-family:
-        "Comic Sans MS",
-        "Segoe Print",
-        cursive;
-
-    font-size:
-        clamp(18px,3vw,25px);
-
-    line-height:
-        1.75;
-}
-
-.note-content h3 {
-
-    margin-top: 25px;
-
-    color:
-        #d76585;
-
-    text-align:
-        right;
-
-    font-family:
-        "Comic Sans MS",
-        "Segoe Print",
-        cursive;
-
-    font-size:
-        23px;
-
-    font-style:
-        italic;
-}
-
-
-/* =====================================================
-   NOTE 2 LABEL
-===================================================== */
-
-.sample-label {
-
-    display: inline-block;
-
-    margin-bottom: 20px;
-
-    padding:
-        8px 15px;
-
-    border:
-        3px solid #d86b89;
-
-    color:
-        #d76585;
-
-    font-weight:
-        bold;
-
-    transform:
-        rotate(5deg);
-}
-
-
-/* =====================================================
-   NOTE 1 STAR
-===================================================== */
-
-.note-sparkle {
-
-    position: absolute;
-
-    right: 15px;
-    bottom: 25px;
-
-    color:
-        #d76585;
-
-    font-size:
-        35px;
-}
-
-
-/* =====================================================
-   NOTE 3 TAB
-===================================================== */
-
-.paper-tab {
-
-    position: absolute;
-
-    top: 0;
-    left: 50%;
-
-    width: 40px;
-    height: 38px;
-
-    transform:
-        translateX(-50%);
-
-    background:
-        #d95e80;
-
-    border-radius:
-        0 0 10px 10px;
-}
-
-
-/* =====================================================
-   LOVE TEXT
-===================================================== */
-
-.love-text {
-    color:
-        #d76585 !important;
-}
-
-
-/* =====================================================
-   LITTLE END
-===================================================== */
-
-.little-ending {
-
-    padding:
-        50px 20px 90px;
-
-    text-align:
-        center;
-}
-
-.little-ending h2 {
-
-    color:
-        #d76585;
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:
-        42px;
-
-    font-style:
-        italic;
-}
-
-.little-ending p {
-
-    margin-top:
-        20px;
-
-    font-family:
-        "Comic Sans MS",
-        "Segoe Print",
-        cursive;
-
-    font-size:
-        17px;
-
-    line-height:
-        1.8;
-}
-
-.little-ending div {
-
-    margin-top:
-        20px;
-
-    color:
-        #d76585;
-
-    font-size:
-        45px;
-}
-
-
-/* =====================================================
+/* ==================================================
    MOBILE
-===================================================== */
+================================================== */
 
 @media (max-width: 600px) {
 
-    .volume-paper {
-        width:
-            calc(100% - 100px);
+    .intro-box h1 {
+        font-size: 46px;
     }
 
-    .volume-content h1 {
-        font-size: 47px;
+    .intro-box p {
+        font-size: 16px;
     }
 
-    .volume-content p {
+    .home-title h1 {
+        font-size: 48px;
+    }
+
+    .boxes {
+        gap: 50px 16px;
+    }
+
+    .box {
+        border-radius: 38px;
+        border-width: 4px;
+    }
+
+    .back {
+        left: 25px;
+
+        width: 185px;
+        height: 58px;
+
         font-size: 17px;
     }
 
-
-    .box-grid {
-        gap:
-            60px 20px;
-    }
-
-    .gift-card {
-        border-radius:
-            40px;
-    }
-
-
-    .back-btn,
-    .little-back {
-
-        left: 30px;
-
-        width: 195px;
-
-        height: 63px;
-
-        font-size:
-            18px;
-    }
-
-
     /* LITTLE */
 
-    .little-note {
-
-        min-height:
-            390px;
-
-        padding:
-            30px 20px;
-
-        gap:
-            15px;
+    .little-container {
+        padding-top: 105px;
     }
 
+    .little-card {
+        min-height: 250px;
 
-    .polaroid {
+        padding: 18px;
 
-        flex:
-            0 0 140px;
+        gap: 15px;
 
-        width:
-            140px;
-
-        padding:
-            8px 8px 25px;
+        margin-bottom: 38px;
     }
 
+    .little-photo {
+        width: 120px;
 
-    .polaroid img {
+        flex-basis: 120px;
 
-        height:
-            150px;
+        padding: 6px 6px 20px;
     }
 
-
-    .note-content p {
-
-        font-size:
-            16px;
-
-        line-height:
-            1.65;
+    .little-photo img {
+        height: 115px;
     }
 
-
-    .note-content h3 {
-
-        font-size:
-            17px;
+    .little-text small {
+        font-size: 8px;
     }
 
-
-    .sample-label {
-
-        font-size:
-            11px;
-
-        padding:
-            6px 8px;
+    .little-text h3 {
+        font-size: 17px;
     }
 
+    .little-text p {
+        font-size: 12.5px;
+
+        line-height: 1.5;
+    }
 
     /* MUSIC */
 
-    .music-image-box {
-        width:
-            85%;
+    .music-container {
+        padding-top: 105px;
     }
 
-    .mp3-player {
-
-        padding:
-            14px;
-
-        gap:
-            12px;
+    .music-cover {
+        width: 82vw;
     }
 
-    .mp3-disc {
+    .disc {
+        width: 60px;
+        height: 60px;
 
-        width:
-            65px;
-
-        height:
-            65px;
+        flex-basis: 60px;
     }
 
-    .mp3-info strong {
-        font-size:
-            16px;
+    .song-info strong {
+        font-size: 15px;
     }
 
-    .mp3-info span {
-        font-size:
-            12px;
+    .play-btn {
+        width: 56px;
+        height: 56px;
+
+        flex-basis: 56px;
     }
-
-    .mp3-button {
-
-        width:
-            58px;
-
-        height:
-            58px;
-    }
-
 }
 
 
 @media (max-width: 380px) {
 
-    .little-note {
+    .little-card {
+        padding: 14px;
 
-        padding:
-            25px 15px;
-
-        gap:
-            10px;
+        gap: 10px;
     }
 
-    .polaroid {
+    .little-photo {
+        width: 105px;
 
-        flex:
-            0 0 120px;
-
-        width:
-            120px;
+        flex-basis: 105px;
     }
 
-    .polaroid img {
-
-        height:
-            130px;
+    .little-photo img {
+        height: 100px;
     }
 
-    .note-content p {
+    .little-text h3 {
+        font-size: 15px;
+    }
 
-        font-size:
-            15px;
+    .little-text p {
+        font-size: 11.5px;
     }
 }
