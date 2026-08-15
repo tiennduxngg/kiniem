@@ -1,6 +1,6 @@
-/* =========================================
-   ELEMENTS
-========================================= */
+/* =====================================================
+   ELEMENT
+===================================================== */
 
 const okayBtn =
     document.getElementById("okayBtn");
@@ -11,6 +11,9 @@ const volumeScreen =
 const mainPage =
     document.getElementById("mainPage");
 
+const music =
+    document.getElementById("audio");
+
 const musicButton =
     document.getElementById("musicButton");
 
@@ -18,219 +21,30 @@ const musicDisc =
     document.getElementById("musicDisc");
 
 
-/* =========================================
-   VARIABLES
-========================================= */
-
-let player = null;
-
-let youtubeReady = false;
-
-let isPlaying = false;
+/* =====================================================
+   STATE
+===================================================== */
 
 let currentBox = null;
 
-
-/* =========================================
-   YOUTUBE
-========================================= */
-
-/*
-    Link:
-    https://youtu.be/o1dVTgUa_HA
-
-    Video ID:
-    o1dVTgUa_HA
-*/
-
-const YOUTUBE_VIDEO_ID =
-    "o1dVTgUa_HA";
+let isPlaying = false;
 
 
-/*
-    Bắt đầu từ giây 41
-*/
-
-const MUSIC_START =
-    41;
-
-
-/* =========================================
-   YOUTUBE API
-========================================= */
-
-window.onYouTubeIframeAPIReady =
-function () {
-
-    player =
-        new YT.Player(
-            "youtube-player",
-            {
-
-                videoId:
-                    YOUTUBE_VIDEO_ID,
-
-                playerVars: {
-
-                    /*
-                     * Không tự động phát
-                     */
-                    autoplay: 0,
-
-                    /*
-                     * Không hiện controls
-                     */
-                    controls: 0,
-
-                    /*
-                     * Quan trọng với iPhone
-                     */
-                    playsinline: 1,
-
-                    /*
-                     * Hạn chế video liên quan
-                     */
-                    rel: 0,
-
-                    /*
-                     * Không fullscreen
-                     */
-                    fs: 0
-
-                },
-
-                events: {
-
-                    onReady:
-                    function () {
-
-                        youtubeReady =
-                            true;
-
-                        console.log(
-                            "YouTube player ready"
-                        );
-
-                    },
-
-
-                    onStateChange:
-                    function (event) {
-
-                        /* =====================
-                           PLAYING
-                        ===================== */
-
-                        if (
-                            event.data ===
-                            YT.PlayerState.PLAYING
-                        ) {
-
-                            isPlaying =
-                                true;
-
-                            musicButton.innerHTML =
-                                "❚❚";
-
-                            musicButton.classList.add(
-                                "playing"
-                            );
-
-                            musicDisc.classList.add(
-                                "playing"
-                            );
-
-                        }
-
-
-                        /* =====================
-                           PAUSED
-                        ===================== */
-
-                        else if (
-                            event.data ===
-                            YT.PlayerState.PAUSED
-                        ) {
-
-                            isPlaying =
-                                false;
-
-                            musicButton.innerHTML =
-                                "▶";
-
-                            musicButton.classList.remove(
-                                "playing"
-                            );
-
-                            musicDisc.classList.remove(
-                                "playing"
-                            );
-
-                        }
-
-
-                        /* =====================
-                           ENDED
-                        ===================== */
-
-                        else if (
-                            event.data ===
-                            YT.PlayerState.ENDED
-                        ) {
-
-                            isPlaying =
-                                false;
-
-                            musicButton.innerHTML =
-                                "▶";
-
-                            musicButton.classList.remove(
-                                "playing"
-                            );
-
-                            musicDisc.classList.remove(
-                                "playing"
-                            );
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-};
-
-
-/* =========================================
+/* =====================================================
    OKAY
-========================================= */
+===================================================== */
 
 okayBtn.addEventListener(
     "click",
     function () {
 
-        /*
-         * Chỉ chuyển trang.
-         *
-         * KHÔNG phát nhạc.
-         */
-
-        mainPage.classList.add(
-            "show"
-        );
-
         volumeScreen.classList.add(
             "hide"
         );
 
-
-        /*
-         * Xóa màn hình volume sau
-         * khi animation hoàn thành.
-         */
+        mainPage.classList.add(
+            "show"
+        );
 
         setTimeout(
             function () {
@@ -246,9 +60,9 @@ okayBtn.addEventListener(
 );
 
 
-/* =========================================
+/* =====================================================
    OPEN BOX
-========================================= */
+===================================================== */
 
 function openBox(number) {
 
@@ -257,23 +71,20 @@ function openBox(number) {
 
 
     /*
-     * Đóng tất cả gift page
+     * Đóng tất cả các trang Box
      */
 
-    const allPages =
-        document.querySelectorAll(
-            ".gift-page"
+    document
+        .querySelectorAll(".gift-page")
+        .forEach(
+            function(page) {
+
+                page.classList.remove(
+                    "show"
+                );
+
+            }
         );
-
-    allPages.forEach(
-        function (page) {
-
-            page.classList.remove(
-                "show"
-            );
-
-        }
-    );
 
 
     /*
@@ -286,7 +97,7 @@ function openBox(number) {
 
 
     /*
-     * Tìm trang tương ứng
+     * Box 1-4
      */
 
     const selectedPage =
@@ -295,54 +106,27 @@ function openBox(number) {
         );
 
 
-    if (!selectedPage) {
-        return;
-    }
+    if (selectedPage) {
 
+        selectedPage.classList.add(
+            "show"
+        );
 
-    /*
-     * Hiện trang
-     */
-
-    selectedPage.classList.add(
-        "show"
-    );
-
-
-    /*
-     * Cuộn lên đầu
-     */
-
-    selectedPage.scrollTop =
-        0;
-
-
-    /*
-     * Khi mở Box 3:
-     *
-     * tuyệt đối KHÔNG autoplay.
-     */
-
-    if (number === 3) {
-
-        stopMusic();
+        selectedPage.scrollTop =
+            0;
 
     }
 
 }
 
 
-/* =========================================
-   PLAY / PAUSE
-========================================= */
+/* =====================================================
+   MUSIC
+===================================================== */
 
 musicButton.addEventListener(
     "click",
-    function (event) {
-
-        /*
-         * Ngăn click lan ra ngoài
-         */
+    async function(event) {
 
         event.preventDefault();
 
@@ -350,57 +134,34 @@ musicButton.addEventListener(
 
 
         /*
-         * Nếu YouTube chưa sẵn sàng
+         * ĐANG PHÁT
          */
 
-        if (
-            !youtubeReady ||
-            !player
-        ) {
+        if (isPlaying) {
 
-            console.log(
-                "YouTube đang tải..."
-            );
+            music.pause();
 
             return;
 
         }
 
 
-        /* =========================
-           PLAY
-        ========================= */
+        /*
+         * CHƯA PHÁT
+         */
 
-        if (!isPlaying) {
+        try {
 
-            /*
-             * Phát video bằng chính
-             * thao tác click của người dùng.
-             *
-             * loadVideoById bắt đầu
-             * chính xác từ giây 41.
-             */
-
-            player.loadVideoById({
-
-                videoId:
-                    YOUTUBE_VIDEO_ID,
-
-                startSeconds:
-                    MUSIC_START
-
-            });
+            await music.play();
 
         }
 
+        catch(error) {
 
-        /* =========================
-           PAUSE
-        ========================= */
-
-        else {
-
-            player.pauseVideo();
+            console.log(
+                "Không thể phát MP3:",
+                error
+            );
 
         }
 
@@ -408,58 +169,87 @@ musicButton.addEventListener(
 );
 
 
-/* =========================================
-   STOP MUSIC
-========================================= */
+/* =====================================================
+   MUSIC PLAY
+===================================================== */
 
-function stopMusic() {
+music.addEventListener(
+    "play",
+    function() {
 
-    if (
-        player &&
-        youtubeReady
-    ) {
+        isPlaying =
+            true;
 
-        try {
+        musicButton.innerHTML =
+            "❚❚";
 
-            player.pauseVideo();
+        musicButton.classList.add(
+            "playing"
+        );
 
-        }
-
-        catch (error) {
-
-            console.log(
-                "Không thể pause YouTube",
-                error
-            );
-
-        }
+        musicDisc.classList.add(
+            "playing"
+        );
 
     }
+);
 
 
-    isPlaying =
-        false;
+/* =====================================================
+   MUSIC PAUSE
+===================================================== */
+
+music.addEventListener(
+    "pause",
+    function() {
+
+        isPlaying =
+            false;
+
+        musicButton.innerHTML =
+            "▶";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+        musicDisc.classList.remove(
+            "playing"
+        );
+
+    }
+);
 
 
-    musicButton.innerHTML =
-        "▶";
+/* =====================================================
+   MUSIC END
+===================================================== */
+
+music.addEventListener(
+    "ended",
+    function() {
+
+        isPlaying =
+            false;
+
+        musicButton.innerHTML =
+            "▶";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+        musicDisc.classList.remove(
+            "playing"
+        );
+
+    }
+);
 
 
-    musicButton.classList.remove(
-        "playing"
-    );
-
-
-    musicDisc.classList.remove(
-        "playing"
-    );
-
-}
-
-
-/* =========================================
-   BACK
-========================================= */
+/* =====================================================
+   GO BACK
+===================================================== */
 
 function goBack() {
 
@@ -467,32 +257,50 @@ function goBack() {
      * Dừng nhạc
      */
 
-    stopMusic();
+    music.pause();
+
+    music.currentTime =
+        0;
 
 
     /*
-     * Đóng toàn bộ gift pages
+     * Reset nút
      */
 
-    const allPages =
-        document.querySelectorAll(
-            ".gift-page"
-        );
+    isPlaying =
+        false;
 
+    musicButton.innerHTML =
+        "▶";
 
-    allPages.forEach(
-        function (page) {
+    musicButton.classList.remove(
+        "playing"
+    );
 
-            page.classList.remove(
-                "show"
-            );
-
-        }
+    musicDisc.classList.remove(
+        "playing"
     );
 
 
     /*
-     * Quay lại Four Box
+     * Đóng Box
+     */
+
+    document
+        .querySelectorAll(".gift-page")
+        .forEach(
+            function(page) {
+
+                page.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+    /*
+     * Về FOUR BOX
      */
 
     mainPage.classList.add(
@@ -506,13 +314,13 @@ function goBack() {
 }
 
 
-/* =========================================
+/* =====================================================
    ESC
-========================================= */
+===================================================== */
 
 document.addEventListener(
     "keydown",
-    function (event) {
+    function(event) {
 
         if (
             event.key === "Escape" &&
