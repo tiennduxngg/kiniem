@@ -392,7 +392,7 @@ img {
 
     z-index: 10;
 
-    width: 470px;
+    width: 350px;
     max-width: 72%;
 
     min-height: 380px;
@@ -492,10 +492,10 @@ img {
 .flower-sticker {
     position: absolute;
 
-    left: 18px;
-    bottom: 20px;
+    left: 5px;
+    bottom: 65px;
 
-    width: 135px;
+    width: 115px;
 
     z-index: 20;
 
@@ -533,7 +533,7 @@ img {
 
     min-height: 250px;
 
-    margin-bottom: 40px;
+     margin-bottom: 40px;
 
     padding: 25px;
 
