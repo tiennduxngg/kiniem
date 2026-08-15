@@ -1,68 +1,56 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#7d5962">
+
     <title>Four Box 4U</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<!-- ==================== TRANG 1 ==================== -->
 
-<section id="volumeScreen" class="page volume-screen">
+<!-- ==================================================
+     TRANG 1 - TURN UP YOUR VOLUME
+================================================== -->
 
-    <div class="volume-content">
+<section
+    id="volumeScreen"
+    class="page volume-screen"
+>
 
-        <h1>
-            🔊 Turn up<br>
-            your volume
-        </h1>
+    <div class="volume-paper">
 
-        <p>
-            Please turn on your volume for the<br>
-            best experience!
-        </p>
+        <div class="volume-content">
 
-        <button id="okayBtn" class="okay-btn">
-            OKAY
-        </button>
+            <h1>
+                🔊 Turn up<br>
+                your volume
+            </h1>
 
-    </div>
+            <p>
+                Please turn on your volume for the<br>
+                best experience!
+            </p>
 
-</section>
-
-
-<!-- ==================== TRANG 2 ==================== -->
-
-<section id="mainPage" class="page main-page">
-
-    <div class="main-content">
-
-        <h1>Four Box 4U</h1>
-
-        <p class="subtitle">
-            A small gift is waiting for you.
-        </p>
-
-
-        <div class="box-grid">
-
-            <button class="gift-card" onclick="openBox(1)">
-                <img src="assets/flower.png">
-            </button>
-
-            <button class="gift-card" onclick="openBox(2)">
-                <img src="assets/letters.png">
-            </button>
-
-            <button class="gift-card" onclick="openBox(3)">
-                <img src="assets/music.png">
-            </button>
-
-            <button class="gift-card" onclick="openBox(4)">
-                <img src="assets/envelope.png">
+            <button
+                id="okayBtn"
+                class="okay-btn"
+                type="button"
+            >
+                OKAY
             </button>
 
         </div>
@@ -72,26 +60,155 @@
 </section>
 
 
-<!-- ==================== BOX 1 ==================== -->
 
-<section id="boxPage1" class="gift-page">
+<!-- ==================================================
+     TRANG 2 - FOUR BOX
+================================================== -->
 
-    <button class="back-btn" onclick="goBack()">
+<section
+    id="mainPage"
+    class="page main-page"
+>
+
+    <div class="main-content">
+
+
+        <header class="header">
+
+            <h1>
+                Four Box 4U
+            </h1>
+
+            <p>
+                A small gift is waiting for you.
+            </p>
+
+        </header>
+
+
+
+        <!-- 4 BOX -->
+
+        <div class="box-grid">
+
+
+            <!-- BOX 1 -->
+
+            <button
+                class="gift-card"
+                type="button"
+                onclick="openBox(1)"
+            >
+
+                <img
+                    src="https://placehold.co/500x500/ffffff/d76586?text=FLOWER"
+                    alt="Flower"
+                >
+
+            </button>
+
+
+
+            <!-- BOX 2 -->
+
+            <button
+                class="gift-card"
+                type="button"
+                onclick="openBox(2)"
+            >
+
+                <img
+                    src="https://placehold.co/500x500/ffffff/d76586?text=LETTER"
+                    alt="Letters"
+                >
+
+            </button>
+
+
+
+            <!-- BOX 3 -->
+
+            <button
+                class="gift-card"
+                type="button"
+                onclick="openBox(3)"
+            >
+
+                <img
+                    src="https://placehold.co/500x500/ffffff/d76586?text=MUSIC"
+                    alt="Music"
+                >
+
+            </button>
+
+
+
+            <!-- BOX 4 -->
+
+            <button
+                class="gift-card"
+                type="button"
+                onclick="openBox(4)"
+            >
+
+                <img
+                    src="https://placehold.co/500x500/ffffff/d76586?text=LOVE"
+                    alt="Envelope"
+                >
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     BOX 1 - FLOWER
+================================================== -->
+
+<section
+    id="boxPage1"
+    class="gift-page"
+>
+
+    <button
+        class="back-btn"
+        type="button"
+        onclick="goBack()"
+    >
         ← Back
     </button>
 
+
     <div class="gift-inner">
 
-        <img src="assets/flower.png" class="gift-image">
+        <img
+            class="gift-image"
+            src="https://placehold.co/500x500/ffffff/d76586?text=FLOWER"
+            alt="Flower"
+        >
 
-        <h2>A little flower for you</h2>
 
-        <div class="heart">♡</div>
+        <h2>
+            A little flower for you
+        </h2>
+
+
+        <div class="heart">
+            ♡
+        </div>
+
 
         <p>
             Một bó hoa nhỏ dành cho một người đặc biệt.
             Mong rằng nó sẽ làm bạn mỉm cười hôm nay.
         </p>
+
 
         <p>
             Có những món quà không cần quá lớn,
@@ -103,30 +220,56 @@
 </section>
 
 
-<!-- ==================== BOX 2 ==================== -->
 
-<section id="boxPage2" class="gift-page">
+<!-- ==================================================
+     BOX 2 - LETTER
+================================================== -->
 
-    <button class="back-btn" onclick="goBack()">
+<section
+    id="boxPage2"
+    class="gift-page"
+>
+
+    <button
+        class="back-btn"
+        type="button"
+        onclick="goBack()"
+    >
         ← Back
     </button>
 
+
     <div class="gift-inner">
 
-        <img src="assets/letters.png" class="gift-image small">
+        <img
+            class="gift-image small"
+            src="https://placehold.co/500x500/ffffff/d76586?text=LETTER"
+            alt="Letter"
+        >
 
-        <h2>Little letters</h2>
 
-        <div class="heart">♡</div>
+        <h2>
+            Little letters
+        </h2>
+
+
+        <div class="heart">
+            ♡
+        </div>
+
 
         <div class="letter">
 
-            <p>Gửi bạn,</p>
+            <p>
+                Gửi bạn,
+            </p>
+
 
             <p>
                 Có một vài điều mình muốn nói,
                 nhưng đôi khi nói trực tiếp lại khó quá.
             </p>
+
 
             <p>
                 Cảm ơn bạn vì đã xuất hiện,
@@ -135,10 +278,12 @@
                 tưởng như rất bình thường.
             </p>
 
+
             <p>
                 Hy vọng những điều nhỏ bé này
                 có thể làm bạn vui hơn một chút.
             </p>
+
 
             <p class="signature">
                 With love ♡
@@ -151,63 +296,147 @@
 </section>
 
 
-<!-- ==================== BOX 3 ==================== -->
 
-<section id="boxPage3" class="gift-page">
+<!-- ==================================================
+     BOX 3 - MUSIC
+================================================== -->
 
-    <button class="back-btn" onclick="goBack()">
+<section
+    id="boxPage3"
+    class="gift-page"
+>
+
+    <button
+        class="back-btn"
+        type="button"
+        onclick="goBack()"
+    >
         ← Back
     </button>
 
-    <div class="gift-inner">
 
-        <img src="assets/music.png" class="gift-image">
+    <div class="gift-inner music-page">
 
-        <h2>A song for you</h2>
 
-        <div class="heart">♡</div>
+        <!-- YOUTUBE PLAYER -->
 
-        <p>
+        <div
+            id="youtube-player"
+            class="youtube-player"
+        ></div>
+
+
+
+        <h2>
+            A song for you
+        </h2>
+
+
+        <div class="heart">
+            ♡
+        </div>
+
+
+        <p class="music-description">
             Một bài hát nhỏ dành riêng cho bạn.
         </p>
 
+
+
+        <!-- MUSIC PLAYER -->
+
         <div class="music-player">
 
-            <div id="musicDisc" class="music-disc">
+
+            <!-- ĐĨA -->
+
+            <div
+                id="musicDisc"
+                class="music-disc"
+            >
                 ♪
             </div>
 
+
+
+            <!-- TÊN -->
+
             <div class="music-info">
-                <b>A Little Song</b>
-                <span>Four Box 4U ♡</span>
+
+                <b>
+                    A Little Song
+                </b>
+
+                <span>
+                    Four Box 4U ♡
+                </span>
+
             </div>
 
-            <button id="musicButton" class="music-button">
+
+
+            <!-- PLAY -->
+
+            <button
+                id="musicButton"
+                class="music-button"
+                type="button"
+            >
                 ▶
             </button>
 
+
         </div>
+
+
+
+        <p class="music-note">
+            Bấm nút ▶ để bắt đầu bài hát ♡
+        </p>
+
 
     </div>
 
 </section>
 
 
-<!-- ==================== BOX 4 ==================== -->
 
-<section id="boxPage4" class="gift-page">
+<!-- ==================================================
+     BOX 4
+================================================== -->
 
-    <button class="back-btn" onclick="goBack()">
+<section
+    id="boxPage4"
+    class="gift-page"
+>
+
+    <button
+        class="back-btn"
+        type="button"
+        onclick="goBack()"
+    >
         ← Back
     </button>
 
+
     <div class="gift-inner">
 
-        <img src="assets/envelope.png" class="gift-image">
+        <img
+            class="gift-image"
+            src="https://placehold.co/500x500/ffffff/d76586?text=LOVE"
+            alt="Love"
+        >
 
-        <h2>One last letter</h2>
 
-        <div class="heart">♡</div>
+        <h2>
+            One last letter
+        </h2>
+
+
+        <div class="heart">
+            ♡
+        </div>
+
 
         <div class="letter">
 
@@ -215,19 +444,23 @@
                 Nếu bạn đã mở đến chiếc hộp cuối cùng...
             </p>
 
+
             <p>
                 thì chắc là bạn đã đi hết cả bốn món quà
                 mình chuẩn bị rồi.
             </p>
 
+
             <p>
                 Cảm ơn bạn vì đã ở đây.
             </p>
+
 
             <p>
                 Hy vọng những khoảnh khắc này
                 sẽ trở thành một kỷ niệm thật đẹp.
             </p>
+
 
             <p class="big-love">
                 You are special ♡
@@ -240,12 +473,16 @@
 </section>
 
 
-<audio id="music" loop>
-    <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
+
+<!-- ==================================================
+     YOUTUBE API
+================================================== -->
+
+<script src="https://www.youtube.com/iframe_api"></script>
 
 
 <script src="script.js"></script>
+
 
 </body>
 </html>
