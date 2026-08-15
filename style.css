@@ -1,7 +1,3 @@
-/* =========================================
-   RESET
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -11,29 +7,26 @@
 html,
 body {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
 body {
-    color: #373236;
-    background: #eeeae3;
     font-family: Arial, sans-serif;
+    background: #eee8e3;
+    color: #3d3739;
 }
 
 
-/* =========================================
-   NỀN GIẤY
-========================================= */
+/* ==================== NỀN ==================== */
 
-.volume-screen,
-.main-page,
+.page,
 .gift-page {
 
     background:
         linear-gradient(
-            rgba(255,255,255,.28),
-            rgba(255,255,255,.20)
+            rgba(255,255,255,.35),
+            rgba(255,255,255,.25)
         ),
         url("assets/background.jpg");
 
@@ -42,80 +35,46 @@ body {
 }
 
 
-/* =========================================
-   TRANG 1
-========================================= */
+/* ==================== TRANG CHUNG ==================== */
+
+.page {
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    transition:
+        transform .65s ease,
+        opacity .65s ease;
+}
+
+
+/* ==================== TRANG 1 ==================== */
 
 .volume-screen {
 
-    position: fixed;
-    inset: 0;
+    z-index: 10;
 
-    z-index: 100;
+    display: flex;
 
-    width: 100%;
-    height: 100vh;
+    align-items: center;
+    justify-content: center;
 
     transform: translateX(0);
-
-    transition:
-        transform .7s
-        cubic-bezier(.77,0,.18,1);
 }
 
 
-/* Khi bấm OKAY */
-
-.volume-screen.next {
-    transform: translateX(-100%);
-}
-
-
-/* =========================================
-   KHUNG TRANG 1
-========================================= */
-
-.volume-paper {
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width:
-        calc(100% - 100px);
-
-    max-width: 730px;
-
-    height: 78vh;
-
-    border:
-        1px solid
-        rgba(220,112,145,.20);
-
-    background:
-        rgba(255,245,245,.08);
-}
-
-
-/* =========================================
-   NỘI DUNG TRANG 1
-========================================= */
+/* ==================== NỘI DUNG ==================== */
 
 .volume-content {
 
-    position: absolute;
+    width: 90%;
 
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%, -45%);
-
-    width: 95%;
+    max-width: 700px;
 
     text-align: center;
 }
@@ -123,31 +82,22 @@ body {
 
 .volume-content h1 {
 
-    color: #d76486;
+    color: #d56585;
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     font-size:
-        clamp(
-            43px,
-            9vw,
-            80px
-        );
-
-    line-height: .98;
+        clamp(45px, 10vw, 80px);
 
     font-style: italic;
 
-    font-weight: 700;
+    line-height: 1;
 
     text-shadow:
-        3px 3px 0 white,
-        -2px -2px 0 white,
-        2px -2px 0 white,
-        -2px 2px 0 white;
+        3px 3px white,
+        -2px -2px white;
 }
 
 
@@ -155,171 +105,77 @@ body {
 
     margin-top: 45px;
 
-    color: #343135;
-
     font-family:
         "Comic Sans MS",
-        "Segoe Print",
         cursive;
 
     font-size:
-        clamp(
-            17px,
-            4vw,
-            30px
-        );
+        clamp(17px, 4vw, 28px);
 
     line-height: 1.7;
-
-    transform: rotate(-1deg);
-
-    text-shadow:
-        2px 2px white;
 }
 
-
-/* =========================================
-   OKAY
-========================================= */
 
 .okay-btn {
 
-    margin-top: 70px;
+    margin-top: 65px;
 
     width: 220px;
-    height: 75px;
 
-    border:
-        6px solid
-        #dc7091;
+    height: 72px;
+
+    border: 6px solid #d96d8b;
 
     border-radius: 50px;
 
-    background:
-        #fffaf4;
+    background: #fffaf5;
 
-    color:
-        #d36685;
+    color: #d56585;
 
     font-size: 22px;
 
-    font-weight: 700;
+    font-weight: bold;
 
     cursor: pointer;
 
-    transition:
-        transform .2s;
+    -webkit-tap-highlight-color: transparent;
 }
+
 
 .okay-btn:active {
-    transform: scale(.93);
+
+    transform: scale(.94);
 }
 
 
-/* =========================================
-   TRANG 2 - FOUR BOX
-========================================= */
+/* ==================== TRANG 2 ==================== */
 
 .main-page {
 
-    position: fixed;
-    inset: 0;
-
-    z-index: 50;
-
-    width: 100%;
-    height: 100vh;
+    z-index: 5;
 
     overflow-y: auto;
 
+    transform: translateX(100%);
+
+    opacity: 1;
+
     padding:
-        30px
-        16px
-        80px;
-
-    transform:
-        translateX(100%);
-
-    transition:
-        transform .7s
-        cubic-bezier(.77,0,.18,1);
+        100px
+        20px
+        70px;
 }
 
 
-.main-page.show {
+.main-page.active {
 
-    transform:
-        translateX(0);
+    transform: translateX(0);
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* ==================== MAIN ==================== */
 
-.header {
-
-    text-align: center;
-
-    padding-top: 130px;
-
-    margin-bottom: 95px;
-}
-
-
-.header h1 {
-
-    color: #d96586;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size:
-        clamp(
-            45px,
-            12vw,
-            75px
-        );
-
-    font-style: italic;
-
-    font-weight: 700;
-
-    line-height: 1;
-
-    letter-spacing: -2px;
-}
-
-
-.header p {
-
-    margin-top: 15px;
-
-    color: #363236;
-
-    font-family:
-        "Comic Sans MS",
-        "Segoe Print",
-        cursive;
-
-    font-size:
-        clamp(
-            17px,
-            5vw,
-            27px
-        );
-
-    transform: rotate(-1deg);
-}
-
-
-/* =========================================
-   4 Ô
-========================================= */
-
-.box-grid {
+.main-content {
 
     width: 100%;
 
@@ -327,14 +183,48 @@ body {
 
     margin: auto;
 
+    text-align: center;
+}
+
+
+.main-content h1 {
+
+    color: #d56585;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(45px, 12vw, 72px);
+
+    font-style: italic;
+}
+
+
+.subtitle {
+
+    margin-top: 15px;
+
+    font-family:
+        "Comic Sans MS",
+        cursive;
+
+    font-size: 18px;
+}
+
+
+/* ==================== 4 BOX ==================== */
+
+.box-grid {
+
+    margin-top: 90px;
+
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
 
-    gap:
-        80px
-        32px;
+    gap: 70px 25px;
 }
 
 
@@ -344,85 +234,40 @@ body {
 
     aspect-ratio: 1 / 1;
 
+    border: 5px solid #df7294;
+
+    border-radius: 45px;
+
+    background: rgba(255,255,255,.95);
+
     display: flex;
 
-    align-items: center;
     justify-content: center;
-
-    padding: 15px;
-
-    border:
-        5px solid
-        #df7294;
-
-    border-radius:
-        48px;
-
-    background:
-        rgba(255,255,255,.96);
+    align-items: center;
 
     cursor: pointer;
 
-    overflow: hidden;
-
-    box-shadow:
-        0
-        3px
-        8px
-        rgba(120,70,80,.08);
-
     transition:
-        transform .25s,
-        box-shadow .25s;
-}
-
-
-.gift-card:hover {
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0
-        12px
-        25px
-        rgba(170,90,110,.16);
+        transform .2s;
 }
 
 
 .gift-card:active {
 
-    transform:
-        scale(.94);
+    transform: scale(.92);
 }
 
 
 .gift-card img {
 
-    width: 76%;
-    height: 76%;
+    width: 75%;
+    height: 75%;
 
     object-fit: contain;
-
-    user-select: none;
-
-    -webkit-user-drag: none;
-
-    transition:
-        transform .3s;
 }
 
 
-.gift-card:hover img {
-
-    transform:
-        scale(1.07);
-}
-
-
-/* =========================================
-   TRANG CHI TIẾT QUÀ
-========================================= */
+/* ==================== TRANG QUÀ ==================== */
 
 .gift-page {
 
@@ -430,54 +275,47 @@ body {
 
     inset: 0;
 
-    z-index: 200;
+    z-index: 50;
 
     display: none;
-
-    width: 100%;
-    height: 100vh;
 
     overflow-y: auto;
 
     padding:
         85px
-        18px
-        45px;
+        20px
+        50px;
 }
 
 
-.gift-page.show {
+.gift-page.active {
 
     display: block;
 
     animation:
-        pageIn .35s ease;
+        openPage .35s ease;
 }
 
 
-@keyframes pageIn {
+@keyframes openPage {
 
     from {
 
         opacity: 0;
 
-        transform:
-            translateX(30px);
+        transform: translateX(30px);
     }
 
     to {
 
         opacity: 1;
 
-        transform:
-            translateX(0);
+        transform: translateX(0);
     }
 }
 
 
-/* =========================================
-   BACK
-========================================= */
+/* ==================== BACK ==================== */
 
 .back-btn {
 
@@ -486,319 +324,214 @@ body {
     top: 20px;
     left: 15px;
 
-    z-index: 20;
+    z-index: 100;
 
     padding:
-        12px
+        11px
         18px;
 
     border:
-        2px solid
-        #df7294;
+        2px solid #df7294;
 
-    border-radius:
-        50px;
+    border-radius: 50px;
 
-    background:
-        rgba(255,255,255,.95);
+    background: white;
 
-    color:
-        #c96280;
+    color: #c85f7e;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
-    font-weight:
-        600;
+    font-weight: bold;
 
-    cursor:
-        pointer;
-
-    box-shadow:
-        0
-        3px
-        10px
-        rgba(100,60,70,.08);
-
-    transition:
-        transform .2s;
+    cursor: pointer;
 }
 
 
-.back-btn:active {
-
-    transform:
-        scale(.94);
-}
-
-
-/* =========================================
-   NỘI DUNG QUÀ
-========================================= */
+/* ==================== NỘI DUNG QUÀ ==================== */
 
 .gift-inner {
 
-    width:
-        min(620px, 100%);
+    width: 100%;
 
-    min-height:
-        75vh;
+    max-width: 600px;
 
-    margin:
-        auto;
+    margin: auto;
 
-    padding:
-        40px 25px;
+    padding: 35px 22px;
 
-    border:
-        1px solid
-        rgba(220,112,145,.20);
+    text-align: center;
 
     background:
-        rgba(255,250,247,.40);
-
-    text-align:
-        center;
+        rgba(255,250,247,.45);
 }
 
 
-.gift-big-image {
+.gift-image {
 
-    width:
-        min(240px, 65vw);
+    width: 220px;
 
-    height:
-        min(240px, 65vw);
+    height: 220px;
 
-    object-fit:
-        contain;
-
-    margin:
-        20px auto;
+    object-fit: contain;
 }
 
 
-.gift-small-image {
+.gift-image.small {
 
     width: 150px;
     height: 150px;
-
-    object-fit: contain;
-
-    margin:
-        10px auto;
 }
 
 
 .gift-inner h2 {
 
-    color:
-        #d76586;
+    margin-top: 15px;
+
+    color: #d56585;
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     font-size:
-        clamp(
-            29px,
-            7vw,
-            48px
-        );
+        clamp(28px, 7vw, 45px);
 
-    font-style:
-        italic;
-
-    line-height:
-        1.1;
+    font-style: italic;
 }
 
 
-.divider {
+.heart {
 
-    margin:
-        18px 0;
+    margin: 15px;
 
-    color:
-        #d76586;
+    color: #d56585;
 
-    font-size:
-        24px;
+    font-size: 25px;
 }
 
 
 .gift-inner > p {
 
-    max-width:
-        550px;
-
     margin:
         15px auto;
 
-    color:
-        #4b4548;
+    max-width: 520px;
 
     font-family:
         "Comic Sans MS",
-        "Segoe Print",
         cursive;
 
-    font-size:
-        16px;
-
-    line-height:
-        1.9;
+    line-height: 1.8;
 }
 
 
-/* =========================================
-   LETTER
-========================================= */
+/* ==================== LETTER ==================== */
 
 .letter {
 
-    max-width:
-        530px;
+    max-width: 520px;
 
-    margin:
-        25px auto;
+    margin: 25px auto;
 
-    padding:
-        28px;
-
-    border:
-        1px solid
-        rgba(200,100,130,.18);
+    padding: 25px;
 
     background:
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.6);
 
-    text-align:
-        left;
+    text-align: left;
 
-    border-radius:
-        5px;
+    border-radius: 10px;
 }
 
 
-.letter p,
-.final-letter p {
+.letter p {
 
-    margin-bottom:
-        18px;
-
-    color:
-        #464044;
+    margin-bottom: 17px;
 
     font-family:
         "Comic Sans MS",
-        "Segoe Print",
         cursive;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
-    line-height:
-        1.9;
+    line-height: 1.8;
 }
 
 
 .signature {
 
-    text-align:
-        right;
+    text-align: right;
 
-    color:
-        #d76586 !important;
+    color: #d56585;
 }
 
 
-/* =========================================
-   MUSIC
-========================================= */
+/* ==================== MUSIC ==================== */
 
 .music-player {
 
-    display:
-        flex;
+    width: 100%;
 
-    align-items:
-        center;
+    max-width: 430px;
 
-    gap:
-        15px;
+    margin: 35px auto;
 
-    width:
-        min(450px, 100%);
+    padding: 15px;
 
-    margin:
-        35px auto 20px;
+    display: flex;
 
-    padding:
-        15px;
+    align-items: center;
 
-    border:
-        1px solid
-        rgba(210,100,130,.15);
+    gap: 12px;
 
-    border-radius:
-        20px;
+    border-radius: 20px;
 
     background:
-        rgba(255,255,255,.65);
+        rgba(255,255,255,.7);
 }
 
 
 .music-disc {
 
+    width: 60px;
+    height: 60px;
+
     flex-shrink: 0;
 
-    width: 65px;
-    height: 65px;
+    display: flex;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-    justify-content:
-        center;
+    justify-content: center;
+    align-items: center;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            #fff 0 10%,
-            #d87998 11% 30%,
-            #4b3039 31% 100%
+            white 0 10%,
+            #d97997 11% 30%,
+            #493039 31%
         );
 
     color: white;
 
-    font-size: 24px;
-
     animation:
         spin 4s linear infinite;
 
-    animation-play-state:
-        paused;
+    animation-play-state: paused;
 }
 
 
 .music-disc.playing {
 
-    animation-play-state:
-        running;
+    animation-play-state: running;
 }
 
 
 @keyframes spin {
 
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
@@ -807,251 +540,50 @@ body {
 
     flex: 1;
 
-    text-align:
-        left;
+    text-align: left;
 }
 
 
-.music-info strong {
+.music-info b {
 
-    display:
-        block;
-
-    color:
-        #4a3d42;
-
-    font-size:
-        14px;
+    display: block;
 }
 
 
 .music-info span {
 
-    display:
-        block;
+    display: block;
 
-    margin-top:
-        5px;
+    margin-top: 5px;
 
-    color:
-        #9a7e87;
+    color: #9c7c86;
 
-    font-size:
-        12px;
+    font-size: 12px;
 }
 
 
 .music-button {
-
-    flex-shrink: 0;
 
     width: 45px;
     height: 45px;
 
     border: none;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
-    background:
-        #dc7091;
+    background: #d96d8b;
 
-    color:
-        white;
+    color: white;
 
-    cursor:
-        pointer;
-
-    font-size:
-        16px;
-}
-
-
-.music-note {
-
-    font-size:
-        13px !important;
-
-    opacity:
-        .75;
-}
-
-
-/* =========================================
-   BOX 4
-========================================= */
-
-.final-letter {
-
-    max-width:
-        520px;
-
-    margin:
-        30px auto;
-
-    padding:
-        30px;
-
-    background:
-        rgba(255,255,255,.55);
-
-    border-radius:
-        10px;
+    cursor: pointer;
 }
 
 
 .big-love {
 
-    margin-top:
-        30px;
+    color: #d56585;
 
-    color:
-        #d76586 !important;
+    text-align: center;
 
-    font-family:
-        Georgia,
-        serif !important;
-
-    font-size:
-        25px !important;
-
-    font-style:
-        italic;
-}
-
-
-/* =========================================
-   IPHONE
-========================================= */
-
-@media (max-width: 600px) {
-
-    .volume-paper {
-
-        width:
-            calc(100% - 100px);
-
-        height:
-            78vh;
-    }
-
-
-    .volume-content h1 {
-
-        font-size:
-            48px;
-    }
-
-
-    .volume-content p {
-
-        margin-top:
-            40px;
-
-        font-size:
-            19px;
-    }
-
-
-    .okay-btn {
-
-        margin-top:
-            65px;
-    }
-
-
-    .header {
-
-        padding-top:
-            130px;
-
-        margin-bottom:
-            95px;
-    }
-
-
-    .header h1 {
-
-        font-size:
-            48px;
-    }
-
-
-    .header p {
-
-        font-size:
-            18px;
-    }
-
-
-    .box-grid {
-
-        gap:
-            75px 28px;
-    }
-
-
-    .gift-card {
-
-        border-width:
-            5px;
-
-        border-radius:
-            43px;
-    }
-
-
-    .gift-big-image {
-
-        width:
-            210px;
-
-        height:
-            210px;
-    }
-}
-
-
-/* =========================================
-   IPHONE NHỎ
-========================================= */
-
-@media (max-width: 380px) {
-
-    .header {
-
-        padding-top:
-            105px;
-
-        margin-bottom:
-            65px;
-    }
-
-
-    .header h1 {
-
-        font-size:
-            42px;
-    }
-
-
-    .box-grid {
-
-        gap:
-            55px 20px;
-    }
-
-
-    .gift-card {
-
-        border-radius:
-            35px;
-    }
-
-
-    .gift-inner h2 {
-
-        font-size:
-            28px;
-    }
+    font-size: 24px !important;
 }
